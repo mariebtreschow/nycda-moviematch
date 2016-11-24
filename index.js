@@ -34,3 +34,7 @@ app.use(session({
 app.set('view engine', 'pug');
 
 app.get('/', userRouter);
+
+app.listen(3000, (req, res) => {
+   console.log('App listening on 3000!');
+});
