@@ -1,0 +1,33 @@
+html
+  head
+    title Movie Match Application
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
+    meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+  body
+    nav(class="navbar navbar-dark bg-inverse")
+      a(class="navbar-brand" href="/") Home
+
+      if user
+        a(href="/logout" class="btn navbar-brand float-xs-right") Logout
+        a(href="/user/profile/:id/edit" class="btn navbar-brand float-xs-right") Edit
+        a(href="/user/profile" class="btn navbar-brand float-xs-right") Profile
+
+
+
+      else if admin
+        a(href="/logout" class="btn navbar-brand float-xs-right") Logout
+        a(href="/admin/movies" class="btn navbar-brand float-xs-right") Admin Panel
+        a(href="/admin/movies/new" class="btn btn-success float-xs-right" id="user") Add Movie
+
+      else
+
+        a(href="/register" class="navbar-brand float-xs-right") Register
+        a(href="/login" class="navbar-brand float-xs-right") Login
+
+
+
+
+    block content
+
+    script(src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous")
+    script(src="/js/application.js")
