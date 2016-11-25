@@ -7,10 +7,11 @@ const express = require('express'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
-var app = express(),
-    db = require('./models');
+var app = express();
+    // db = require('./models');
 
-var userRouter = require('./routes/user');
+var userRouter = require('./routes/user'),
+    userRouter = require('./routes/admin');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -33,7 +34,9 @@ app.use(session({
 
 app.set('view engine', 'pug');
 
-app.get('/', userRouter);
+
+
+app.use('/', userRouter);
 
 app.listen(3000, (req, res) => {
    console.log('App listening on 3000!');
