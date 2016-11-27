@@ -9,10 +9,12 @@ router.get('/', (request,response) => {
 });
 
 router.get('/admin/movies/new', (request,response) => {
-  console.log('testing');
   response.render('admin/new');
 });
 
+router.get('/admin/movies', (request,response) => {
+  response.render('admin/show');
+});
 
 
 module.exports = router;
