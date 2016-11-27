@@ -38,7 +38,7 @@ router.post('/user/message', (req, res) => {
          to: user.email,
          subject: 'MovieMatch Request',
          text: req.body.email_content + '\n\nSender Email: ' +
-         req.body.email  + '\nSender User: ' + req.body.user
+         req.body.email  + '\nSender User: ' + req.body.name + req.body.surname
          }, (error, info) => {
             if (error) {
             console.log('Error occured:');
