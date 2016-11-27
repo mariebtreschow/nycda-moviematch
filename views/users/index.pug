@@ -1,0 +1,18 @@
+extends ../application.pug
+
+	block content
+
+		.container
+			h1 Find your Movie match:
+				each movie in movies
+					.row
+						.col-xs-8
+							.card.card-block
+								a(href='/' + movie.slug)
+									h4=movie.title
+								h6=movie.imageURL
+								h6=movie.genre
+								h6=movie.producer
+									.col-xs-2.offset-xs-8
+										a(href='users/movie/:slug')
+											button(type="submit" class="btn btn-success btn-block") Like this one!
