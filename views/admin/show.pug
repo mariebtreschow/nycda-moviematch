@@ -5,10 +5,10 @@ block content
   .card.card-block
     .row
       .col-md-4.hidden-md-down
-        img(src=movie.imageURL alt=movie.title + "Cover Image" class="img-fluid")
+        img(src=movie.coverImageURL alt=movie.title + "Cover Image" class="img-fluid")
       .col-xs-12.col-md-8
         h2= movie.title
-        h5= movie.director
+        h5= movie.directorName
         p= movie.description
         .row
           .col-xs-3.offset-xs-6

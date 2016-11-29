@@ -1,4 +1,5 @@
 var express = require('express'),
+    db = require('../models'),
     router = express.Router();
 
 
@@ -22,7 +23,8 @@ router.get('/admin/movies', (request,response) => {
 
 router.post('/admin/movies/new', (request, response) => {
   if (request.body.title) {
-    MovieMatch.create(request.body).then(() => {
+    console.log(request.body);
+    db.Movie.create(request.body).then(() => {
       response.redirect('/');
     });
   } else {
@@ -33,7 +35,7 @@ router.post('/admin/movies/new', (request, response) => {
 
 
 router.delete('/admin/:id', (request, response) => {
-  MovieMatch.destroy({
+  db.Movie.destroy({
     where: {
       id: request.params.id
     }
