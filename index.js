@@ -1,10 +1,10 @@
 const express = require('express'),
       pug = require('pug'),
       bodyParser = require('body-parser'),
-      methodOverride = require('method-override'),
-      displayRoutes = require('express-routemap'),
-      session = require('express-session'),
-      bcrypt = require('bcrypt'),
+      // methodOverride = require('method-override'),
+      // displayRoutes = require('express-routemap'),
+      // session = require('express-session'),
+      // bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
 var app = express();
@@ -13,30 +13,43 @@ var app = express();
 var userRouter = require('./routes/user'),
     userRouter = require('./routes/admin');
 
+
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded());
+//
+// app.use(methodOverride((req, res) => {
+//    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+//       var method = req.body._method;
+//
+//       delete req.body._method;
+//       return method;
+//    }})
+// );
 
-app.use(methodOverride((req, res) => {
-   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      var method = req.body._method;
+// app.use(session({
+//    secret: 'secret key',
+//    resave: true,
+//    saveUninitialized: true
+//  }));
+//
 
-      delete req.body._method;
-      return method;
-   }})
-);
 
-app.use(session({
-   secret: 'secret key',
-   resave: true,
-   saveUninitialized: true
- }));
+
 
 app.set('view engine', 'pug');
 
 
 
 app.use('/', userRouter);
+
+// app.get('/', userRouter);
+
+app.get('/', (req,res) => {
+  res.render('homepage');
+});
+
+
 
 app.listen(3000, (req, res) => {
    console.log('App listening on 3000!');
