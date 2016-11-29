@@ -18,9 +18,11 @@ extends ../application.pug
             .row
                .col-xs.8
                   .card.card-block
+                     a(href="/user/profile/:id")
+                        img(src=user.profileImageURL alt=movie.title + "Cover Image" class="img-fluid")
                      h4=user.name + user.surname
                      h5=user.age
                         .col-xs-2
                         form(action="/user/message/" + message.id method="POST")
-                           input(type="hidden" name="_method" value="DELETE")
-                           button(type="submit" class="btn btn-success") Delete Blog Post
+                           input(type="hidden" name="_method" value=user.id )
+                           button(type="submit" class="btn btn-success") Send a request!

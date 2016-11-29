@@ -1,8 +1,8 @@
 
-var express = require('express'),
-    db = require('../models'),
+   var express = require('express'),
+            db = require('./models'),
     nodemailer = require('nodemailer'),
-    router = express.Router();
+        router = express.Router();
 
 
 router.get('/user/movies', (req, res) => {
