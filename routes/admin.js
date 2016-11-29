@@ -18,8 +18,19 @@ router.get('/admin/adminpanel', (request,response) => {
 });
 
 router.get('/admin/movies', (request,response) => {
-  response.render('admin/show');
+  db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
+    response.render('admin/show', { movies: movies });
+  });
 });
+
+router.get('/movies/edit/:id', (request,response) => {
+  console.log(request.params.id);
+  db.Movie.findById(request.params.id).then((movies) => {
+    response.render('admin/edit', { movies: movies });
+  });
+});
+
+
 
 router.post('/admin/movies/new', (request, response) => {
   if (request.body.title) {
@@ -40,7 +51,7 @@ router.delete('/admin/:id', (request, response) => {
       id: request.params.id
     }
   }).then(() => {
-    response.redirect('admin/show');
+    response.redirect('/admin/movies');
   });
 });
 
