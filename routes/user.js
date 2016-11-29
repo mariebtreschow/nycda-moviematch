@@ -1,15 +1,18 @@
+const bcrypt = require('bcrypt');
 
    var express = require('express'),
-            db = require('./models'),
+            db = require('../models'),
     nodemailer = require('nodemailer'),
         router = express.Router();
 
 
 router.get('/user/movies', (req, res) => {
-   db.Movie.findAll().then((movie) => {
-      res.render('users/index', { movie: movies });
-   });
+//   db.Movie.findAll().then((movie) => {
+      res.render('users/index');
+//   });
 });
+
+//, { movie: movies }
 
 router.get('user/movies/:id', (req, res) => {
    db.Movie.findOne(req.body, {

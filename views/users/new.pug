@@ -14,6 +14,9 @@ block content
 				hr
 				form(action="/user" method="POST")
 					div(class="form-group")
+						lable(for="profileImageURL") Picture Link:
+						input(name="profileImageURL" type="text" class="form-control")
+					div(class="form-group")
 						lable(for="name") Name:
 						input(name="name" type="text" class="form-control")
 					div(class="form-group")
@@ -23,7 +26,11 @@ block content
 						lable(for="email") Email:
 						input(name="email" type="text" class="form-control")
 					div(class="form-group")
+						lable(for="age") Age:
+						input(name="age" type="integer" class="form-control")
+					div(class="form-group")
 						lable(for="password") Password:
-						input(name="password" type="password" class="form-control" )
+						input(name="password" type="password" class="form-control")
+
 					div(class="form-group text-xs-center")
 						button(type="submit" class="btn btn-ls btn-success") Create a New User

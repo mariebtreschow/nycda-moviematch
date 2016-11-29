@@ -2,15 +2,15 @@ const express = require('express'),
       pug = require('pug'),
       sequelize = require('sequelize'),
       bodyParser = require('body-parser'),
-      methodOverride = require('method-override'),
       displayRoutes = require('express-routemap'),
+      methodOverride = require('method-override'),
       session = require('express-session'),
+      base64url = require('base64url'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
 var app = express(),
      db = require('./models');
-
 
 var userRouter = require('./routes/user');
 
@@ -43,7 +43,7 @@ app.get('/register', (req, res) => {
 
 app.post('/user', (req, res) => {
    db.User.create(req.body).then((user) => {
-      res.redirect('/');
+      res.redirect('/login');
    }).catch((error) => {
       console.log(error);
       res.render('users/new');
@@ -60,17 +60,21 @@ app.post('/login', (req, res) => {
          email: req.body.email
       }
    }).then((userInDB) => {
-      bcrypt.compare(req.body.password, userInDB.passwordDigest , (error, result) => {
-         if (result) {
-            req.session.user = userInDB;
-            res.redirect('/user/movies');
-         } else {
-            res.render('login');
-         }
-      });
+      if (userInDB.password === req.body.password) {
+         req.session.user = userInDB;
+         res.redirect('/user/movies');
+      } else {
+         res.redirect('login');
+      }
+
    }).catch((error) => {
-      res.render('login');
+      res.redirect('login');
    });
+});
+
+app.get('/logout', (req, res) => {
+   req.session.user = undefined;
+   res.redirect('/');
 });
 
 app.listen(3000, (req, res) => {
