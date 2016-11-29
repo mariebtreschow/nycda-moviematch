@@ -1,0 +1,14 @@
+extends Application
+
+block content
+  .container
+    hr
+    each movie in movies
+      .card.card-block
+        .row
+          .col-md-4
+            img(src=movie.coverImageURL alt=movie.title + "Poster" class="img-fluid")
+          .col-md-8
+            h2= movie.title
+            h5= movie.directorName
+            p= movie.description
