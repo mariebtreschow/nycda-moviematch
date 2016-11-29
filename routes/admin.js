@@ -12,6 +12,14 @@ router.get('/admin/movies/new', (request,response) => {
   response.render('admin/new');
 });
 
+router.get('/admin/adminpanel', (request,response) => {
+  response.render('admin/adminpanel');
+});
+
+router.get('/admin/users', (request,response) => {
+  response.render('admin/users');
+});
+
 router.get('/admin/movies', (request,response) => {
   response.render('admin/show');
 });
