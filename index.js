@@ -35,7 +35,7 @@ app.use(session({
 
 app.set('view engine', 'pug');
 
-app.get('/', userRouter);
+app.use('/user', userRouter);
 
 app.get('/register', (req, res) => {
    res.render('users/new');
@@ -51,6 +51,7 @@ app.post('/user', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
+   console.log(req.session);
    res.render('login');
 });
 

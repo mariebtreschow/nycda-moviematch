@@ -5,8 +5,17 @@ const bcrypt = require('bcrypt');
     nodemailer = require('nodemailer'),
         router = express.Router();
 
+var userLoggedIn = (req, res, next) => {
+   if (req.session.user) {
+      next();
+   } else {
+      res.redirect('/login');
+   }
+};
 
-router.get('/user/movies', (req, res) => {
+router.use(userLoggedIn);
+
+router.get('/movies', (req, res) => {
 //   db.Movie.findAll().then((movie) => {
       res.render('users/index');
 //   });
@@ -14,7 +23,7 @@ router.get('/user/movies', (req, res) => {
 
 //, { movie: movies }
 
-router.get('user/movies/:id', (req, res) => {
+router.get('/movies/:id', (req, res) => {
    db.Movie.findOne(req.body, {
       where: {
          id: req.params.id
@@ -27,11 +36,11 @@ router.get('user/movies/:id', (req, res) => {
    });
 });
 
-router.get('/user/message', (req, res) => {
-   res.render('user/message');
+router.get('/message', (req, res) => {
+   res.render('users/message');
 });
 
-router.post('/user/message', (req, res) => {
+router.post('/message', (req, res) => {
    db.User.findOne({
       where: {
          id: req.params.id
@@ -51,33 +60,33 @@ router.post('/user/message', (req, res) => {
    });
 });
 
-router.get('/user/profile', (req, res) => {
+router.get('/profile', (req, res) => {
    db.User.findOne(req.body, {
       where: {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('user/profile', { user: user});
+      res.render('profile', { user: user});
    });
 });
 
-router.get('/user/profile/:id/edit', (req, res) => {
+router.get('/profile/:id/edit', (req, res) => {
    db.User.findOne(req.body, {
       where: {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('user/profile', { user: user });
+      res.render('profile', { user: user });
    });
 });
 
-router.put('/user/:id', (req, res) => {
+router.put('/:id', (req, res) => {
    db.User.update(req.body, {
       where: {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('user/profile', { user: user });
+      res.render('profile', { user: user });
    });
 });
 
