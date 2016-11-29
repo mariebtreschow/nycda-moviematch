@@ -48,6 +48,8 @@ var Movie = Sequelize.define('movie', {
   movieDescription: Sequelize.TEXT
 });
 
+sequelize model:create --name Movie --attributes title:string,coverImageURL:string,trailer:string,slug:string,directorName:integer,email:string,image:string,password;
+
 sequelize.sync().then((), => {
   Movie.bulkCreate([
     {
@@ -190,7 +192,7 @@ app.get('/', (req,res) => {
 });
 
 
-
+sequelize.sync({})
 app.listen(3000, (req, res) => {
    console.log('App listening on 3000!');
 });
