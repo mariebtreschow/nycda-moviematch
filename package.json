@@ -3,12 +3,14 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "crypt": "^0.0.1",
+    "db": "^1.0.6",
     "express": "^4.14.0",
     "express-routemap": "^1.0.2",
     "express-session": "^1.14.2",
     "method-override": "^2.3.7",
     "morgan": "^1.7.0",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "sequelize": "^3.27.0"
   },
   "name": "moviematch",
   "version": "1.0.0",
