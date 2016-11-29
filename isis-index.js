@@ -1,18 +1,51 @@
 const Sequelize = require('sequelize'),
-      sequelize = new Sequelize('isisvanderplas', 'isisvanderplas', { dialect: 'postgres'});
+      pug = require('pug'),
+      bodyParser = require('body-parser'),
+      // methodOverride = require('method-override'),
+      // displayRoutes = require('express-routemap'),
+      // session = require('express-session'),
+      // bcrypt = require('bcrypt'),
+      morgan = require('morgan');
+      express = require('express');
 
-var Movie = sequelize.define('movie', {
-  movieTitle: sequelize.STRING,
-  coverImageURL: sequelize.STRING,
-  movieTrailer: sequelize.STRING,
-  movieSlug: sequelize.STRING,
-  movieDirectorName: sequelize.STRING,
-  movieActorNames: sequelize.STRING,
-  language: sequelize.STRING,
-  subtitles: sequelize.STRING,
-  movieGenre: sequelize.STRING,
-  lengthInMin: sequelize.INTEGER,
-  movieDescription: sequelize.TEXT
+var app = express(),
+
+// var userRouter = require('./routes/user');
+app.set('view engine', 'pug');
+app.use(express.static('public'));
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded());
+//
+// app.use(methodOverride((req, res) => {
+//    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+//       var method = req.body._method;
+//
+//       delete req.body._method;
+//       return method;
+//    }})
+// );
+
+// app.use(session({
+//    secret: 'secret key',
+//    resave: true,
+//    saveUninitialized: true
+//  }));
+//
+
+var sequelize = new Sequelize('isisvanderplas', 'isisvanderplas', { dialect: 'postgres'});
+
+var Movie = Sequelize.define('movie', {
+  movieTitle: Sequelize.STRING,
+  coverImageURL: Sequelize.STRING,
+  movieTrailer: Sequelize.STRING,
+  movieSlug: Sequelize.STRING,
+  movieDirectorName: Sequelize.STRING,
+  movieActorNames: Sequelize.STRING,
+  language: Sequelize.STRING,
+  subtitles: Sequelize.STRING,
+  movieGenre: Sequelize.STRING,
+  lengthInMin: Sequelize.INTEGER,
+  movieDescription: Sequelize.TEXT
 });
 
 sequelize.sync().then((), => {
@@ -148,4 +181,16 @@ sequelize.sync().then((), => {
       movieDescription: "An adventurous teenager sails out on a daring mission to save her people. During her journey, Moana meets the once-mighty demigod Maui, who guides her in her quest to become a master way-finder. Together they sail across the open ocean on an action-packed voyage, encountering enormous monsters and impossible odds. Along the way, Moana fulfills the ancient quest of her ancestors and discovers the one thing she always sought: her own identity."
     }
   ]);
+});
+
+// app.get('/', userRouter);
+
+app.get('/', (req,res) => {
+  res.render('homepage');
+});
+
+
+
+app.listen(3000, (req, res) => {
+   console.log('App listening on 3000!');
 });
