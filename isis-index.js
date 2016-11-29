@@ -32,7 +32,22 @@ app.use(bodyParser.urlencoded());
 //  }));
 //
 
+const sequelize = require('sequelize'),
+      sequelize = new sequelize('IsisvanderPlas', 'IsisvanderPlas', { dialect: 'postgres'});
 
+var movie = sequelize.define('movie', {
+  movieTitle: sequelize.STRING,
+  coverImageURL: sequelize.STRING,
+  movieTrailer: sequelize.STRING,
+  movieSlug: sequelize.STRING,
+  movieDirectorName: sequelize.STRING,
+  movieActorNames: sequelize.STRING,
+  language: sequelize.STRING,
+  subtitles: sequelize.STRING,
+  movieGenre: sequelize.STRING,
+  lengthInMin: sequelize.INTEGER,
+  movieDescription: sequelize.TEXT
+});
 
 
 app.set('view engine', 'pug');
@@ -48,3 +63,19 @@ app.get('/', (req,res) => {
 app.listen(3000, (req, res) => {
    console.log('App listening on 3000!');
 });
+
+
+
+
+// app.get('/newmovie', (req, res) => {
+//   res.render('newmovie');
+// });
+//
+// app.post('/newmovie', (req, res) => {
+//   console.log(req.body);
+//   res.redirect('/');
+// });
+//
+// app.get('/movies', (req, res) => {
+//   res.render('movies');
+// });
