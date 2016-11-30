@@ -4,9 +4,9 @@ html
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
   body
-    nav(class="navbar navbar-dark bg-inverse")
+    nav(class="navbar navbar-dark bg-inverse" style="border-radius:0px;")
       a(class="navbar-brand" href="/") Home
-
+      a(class="navbar-brand" href="/about") About
       if user
         a(href="/logout" class="btn navbar-brand float-xs-right") Logout
         a(href="/user/profile/:id/edit" class="btn navbar-brand float-xs-right") Edit
