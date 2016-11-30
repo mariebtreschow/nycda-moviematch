@@ -6,7 +6,7 @@ var express = require('express'),
 
 
 router.get('/', (request,response) => {
-  response.render('admin/movies/index.pug');
+  response.render('admin/movies/index');
 });
 
 router.get('/admin/movies/new', (request,response) => {
@@ -23,7 +23,7 @@ router.get('/admin/movies', (request,response) => {
   });
 });
 
-router.get('/admin/movies/edit/:id', (request,response) => {
+router.get('/admin/movies/:id/edit', (request,response) => {
   db.Movie.findById(request.params.id).then((movies) => {
     response.render('admin/movies/edit', { movies: movies });
   });
@@ -42,7 +42,7 @@ router.post('/admin/movies/new', (request, response) => {
   }
 });
 
-router.put('/admin/movies/edit/:id', (request, response) => {
+router.put('/admin/movies/:id', (request, response) => {
   db.Movie.update(request.body, {
     where: {
       id: request.params.id

@@ -6,7 +6,7 @@ block content
       .col-xs-8.offset-xs-2
         h1 Edit Movie
         hr
-        form(action="/admin/movies/edit/" + movies.id method="POST")
+        form(action="/admin/movies/" + movies.id method="POST")
           input(type="hidden" name="_method" value="PUT")
           div(class="form-group")
             label(for="movie-title") Title
