@@ -16,9 +16,9 @@ var userLoggedIn = (req, res, next) => {
 router.use(userLoggedIn);
 
 router.get('/movies', (req, res) => {
-//   db.Movie.findAll().then((movie) => {
-      res.render('users/index');
-//   });
+   db.User.findAll().then((user) => {
+      res.render('users/index', {user: user});
+   });
 });
 
 //, { movie: movies }
@@ -66,7 +66,7 @@ router.get('/profile', (req, res) => {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('profile', { user: user});
+      res.render('users/profile', { user: user});
    });
 });
 
@@ -76,17 +76,21 @@ router.get('/profile/:id/edit', (req, res) => {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('profile', { user: user });
+      res.render('users/edit', { user: user });
    });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/user/:id', (req, res) => {
+   console.log(req.params.id);
    db.User.update(req.body, {
       where: {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('profile', { user: user });
+      res.render('user/profile', { user: user });
+   }).catch((error) => {
+      console.log('This is the error:');
+      console.log(error);
    });
 });
 

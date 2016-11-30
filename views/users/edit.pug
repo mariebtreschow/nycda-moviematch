@@ -1,0 +1,37 @@
+
+extends ../application.pug
+
+block content
+	.container
+		.row
+			.col-xs-6.offset-xs-2
+				if errors
+					each error in errors
+						div(class="alert alert-danger" role="alert")
+							span= error.message
+				br
+				h1 Update your Profile:
+				hr
+				form(action="/user/" + user.id method="POST")
+					input(type="hidden" name="_method" value="PUT")
+					div(class="form-group")
+						lable(for="profileImageURL") Picture Link:
+						input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL" value=user.profileImageURL)
+					div(class="form-group")
+						lable(for="name") Name:
+						input(name="name" type="text" class="form-control" id="user-name" value=user.name)
+					div(class="form-group")
+						lable(for="lastname") Surname:
+						input(name="surname" type="text" class="form-control" id="user-surname" value=user.surname)
+					div(class="form-group")
+						lable(for="email") Email:
+						input(name="email" type="text" class="form-control" id="user-email" value=user.email)
+					div(class="form-group")
+						lable(for="age") Age:
+						input(name="age" type="integer" class="form-control" id="user-age" value=user.age)
+					div(class="form-group")
+						lable(for="password") Password:
+						input(name="password" type="password" class="form-control" id="user-password" value=user.password)
+
+					div(class="form-group text-xs-center")
+						button(type="submit" class="btn btn-block btn-ls btn-success") Update your Profile

@@ -1,8 +1,20 @@
 extends ../application.pug
 
-   block content
+block content
 
-      .container
-         .row
-            .col-xs-8
-               img(src=user.profileImageURL)
+	.container
+		br
+		h2 Here is your MovieMatch Profile:
+		.card.card-block
+			.row
+				.col-xs-4
+					img(src=user.profileImageURL width="300" height="300" float-xs-left)
+				.col-xs-4
+					h5="Name: " + user.name + user.surname
+					h5="Email: " + user.email
+					h5="Age: " + user.age
+					h5="Password: " + user.password
+
+					br
+					a(href='/user/profile/:id/edit')
+						button(type="submit" class="btn btn-lg btn-warning") Edit User

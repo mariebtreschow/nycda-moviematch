@@ -1,6 +1,6 @@
 html
   head
-    title Movie Match Application
+    title MovieMatch Application
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous")
     meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
   body
@@ -10,7 +10,9 @@ html
       if user
         a(href="/logout" class="btn navbar-brand float-xs-right") Logout
         a(href="/user/profile/:id/edit" class="btn navbar-brand float-xs-right") Edit
-        a(href="/user/profile" class="btn navbar-brand float-xs-right") Profile
+        a(href="/user/profile" class="btn navbar-brand float-xs-right") My Profile
+        a(href="/user/movies" class="btn navbar-brand float-xs-right") MovieMatch
+
 
       else if admin
         a(href="/logout" class="btn navbar-brand float-xs-right") Logout
