@@ -28,11 +28,14 @@ app.get('/', (req,res) => {
   res.render('homepage');
 });
 
-app.post('posts/newmovie', (req, res) => {
-  console.log(req.body);
+
+app.get('/about', (req,res) => {
+  res.render('about');
 });
 
-
+app.get('/layout', (req,res) => {
+  res.render('movie-layout');
+});
 
 
 
