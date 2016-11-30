@@ -10,7 +10,7 @@ const express = require('express'),
 var app = express();
     // db = require('./models');
 
-// var userRouter = require('./routes/user');
+var userRouter = require('./routes/user');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -43,7 +43,13 @@ app.get('/', (req,res) => {
   res.render('homepage');
 });
 
+app.get('/about', (req,res) => {
+  res.render('about');
+});
 
+app.get('/layout', (req,res) => {
+  res.render('movie-layout');
+});
 
 app.listen(3000, (req, res) => {
    console.log('App listening on 3000!');
