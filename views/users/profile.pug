@@ -10,10 +10,9 @@ block content
 				.col-xs-4
 					img(src=user.profileImageURL width="300" height="300" float-xs-left)
 				.col-xs-4
-					h5="Name: " + user.name + user.surname
+					h5="Name: " + user.name + " " + user.surname
 					h5="Email: " + user.email
 					h5="Age: " + user.age
-					h5="Password: " + user.password
 
 					br
 					a(href='/user/profile/:id/edit')
