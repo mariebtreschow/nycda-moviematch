@@ -5,10 +5,14 @@ block content
 		.card.card-block
 			.row
 				.col-md-4.hidden-md-down
-					img(src='http://photos.laineygossip.com/articles/fantastic-beasts-sequel-03aug16.jpg' class="img-fluid")
+					img(src=movie.coverImageURL class="img-fluid")
+
 					button.btn-success I want to go!
 				.col-xs-12.col-md-8
-					h2 Fantastic Beasts and where to find them
-					h5 David Yates
-					p The year is 1926, and Newt Scamander (Eddie Redmayne) has just completed a global excursion to find and document an extraordinary array of magical creatures. Arriving in New York for a brief stopover, he might have come and gone without incident, were it not for a No-Maj (American for Muggle) named Jacob, a misplaced magical case, and the escape of some of Newt's fantastic beasts, which could spell trouble for both the wizarding and No-Maj worlds.
+					h2= movie.title
+					h5= movie.directorName
+					h6= movie.actorNames
+					p= movie.description
+					h6= movie.genre
+					h6= movie.lengthInMin minutes
 					iframe(width="560" height="315" src="https://www.youtube.com/embed/Vso5o11LuGU" frameborder="0" allowfullscreen)

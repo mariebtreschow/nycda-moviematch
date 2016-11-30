@@ -14,7 +14,7 @@ var userRouter = require('./routes/user');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true}));
 //
 // app.use(methodOverride((req, res) => {
 //    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
