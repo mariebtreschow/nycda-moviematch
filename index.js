@@ -5,13 +5,15 @@ const express = require('express'),
       displayRoutes = require('express-routemap'),
       session = require('express-session'),
       bcrypt = require('bcrypt'),
-      morgan = require('morgan');
+      morgan = require('morgan'),
+      Sequelize = require('sequelize');
 
 var app = express(),
-    db = require('./models');
+    db = require('./models'),
+    sequelize = new Sequelize('moviematch', process.env.DB_USERNAME, process.env.DB_PASSWORD, { dialect: 'postgres' });
 
 var userRouter = require('./routes/user'),
-    userRouter = require('./routes/admin');
+    adminRouter = require('./routes/admin');
 
 
 app.use(express.static('public'));
@@ -41,9 +43,13 @@ app.set('view engine', 'pug');
 
 
 
-app.use('/', userRouter);
+// app.use('/', userRouter);
 
-app.get('/', userRouter);
+
+app.use('/', adminRouter);
+
+// app.get('/', adminRouter);
+
 
 app.get('/', (req,res) => {
   res.render('homepage');

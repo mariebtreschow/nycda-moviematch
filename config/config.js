@@ -1,6 +1,6 @@
-{
+module.exports = {
   "development": {
-    "username": "Kevin",
+    "username": process.env.DB_USERNAME,
     "password": null,
     "database": "moviematch",
     "host": "127.0.0.1",
@@ -20,4 +20,4 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
-}
+};
