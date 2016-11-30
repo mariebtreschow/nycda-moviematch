@@ -6,26 +6,26 @@ var express = require('express'),
 
 
 router.get('/', (request,response) => {
-  response.render('admin/index.pug');
+  response.render('admin/movies/index.pug');
 });
 
 router.get('/admin/movies/new', (request,response) => {
-  response.render('admin/new');
+  response.render('admin/movies/new');
 });
 
-router.get('/admin/adminpanel', (request,response) => {
-  response.render('admin/adminpanel');
+router.get('/admin/users/adminpanel', (request,response) => {
+  response.render('admin//users/adminpanel');
 });
 
 router.get('/admin/movies', (request,response) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
-    response.render('admin/show', { movies: movies });
+    response.render('admin/movies/show', { movies: movies });
   });
 });
 
 router.get('/admin/movies/edit/:id', (request,response) => {
   db.Movie.findById(request.params.id).then((movies) => {
-    response.render('admin/edit', { movies: movies });
+    response.render('admin/movies/edit', { movies: movies });
   });
 });
 
@@ -38,7 +38,7 @@ router.post('/admin/movies/new', (request, response) => {
       response.redirect('/');
     });
   } else {
-    reponse.redirect('/admin/movies');
+    reponse.redirect('/admin/movies/index');
   }
 });
 
