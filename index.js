@@ -41,7 +41,7 @@ app.get('/register', (req, res) => {
    res.render('users/new');
 });
 
-app.post('/user', (req, res) => {
+app.post('/register', (req, res) => {
    db.User.create(req.body).then((user) => {
       res.redirect('/login');
    }).catch((error) => {

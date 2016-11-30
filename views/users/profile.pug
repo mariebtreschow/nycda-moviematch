@@ -13,7 +13,10 @@ block content
 					h5="Name: " + user.name + " " + user.surname
 					h5="Email: " + user.email
 					h5="Age: " + user.age
-
-					br
+				.col-xs-2.offset-xs-3
 					a(href='/user/profile/:id/edit')
 						button(type="submit" class="btn btn-lg btn-warning") Edit User
+				.col-xs-2
+					form(action="/user/delete/" + user.id method="POST")
+						input(type="hidden" name="_method" value="DELETE")
+						button(type="submit" class="btn btn-lg btn-danger") Delete User
