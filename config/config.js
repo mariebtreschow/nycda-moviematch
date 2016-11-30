@@ -1,6 +1,6 @@
-{
+module.exports = {
   "development": {
-    "username": "isisvanderplas",
+    "username": process.env.DB_USERNAME,
     "password": null,
     "database": "moviematch",
     "host": "127.0.0.1",
