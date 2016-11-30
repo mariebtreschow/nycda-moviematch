@@ -23,7 +23,7 @@ router.get('/admin/movies', (request,response) => {
   });
 });
 
-router.get('/movies/edit/:id', (request,response) => {
+router.get('/admin/movies/edit/:id', (request,response) => {
   console.log(request.params.id);
   db.Movie.findById(request.params.id).then((movies) => {
     response.render('admin/edit', { movies: movies });
@@ -43,7 +43,15 @@ router.post('/admin/movies/new', (request, response) => {
   }
 });
 
-
+router.put('/admin/movies/edit/:id', (request, response) => {
+  db.Movie.update(request.body, {
+    where: {
+      id: request.params.id
+    }
+  }).then(() => {
+    response.redirect('/admin/movies');
+  });
+});
 
 router.delete('/admin/:id', (request, response) => {
   db.Movie.destroy({

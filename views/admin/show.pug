@@ -15,7 +15,7 @@ block content
             p= movie.description
             .row
               .col-xs-3.offset-xs-6
-                a(href="/movies/" + "edit/" + movie.id class="btn btn-warning") EDIT MOVIE
+                a(href="/admin/movies/" + "edit/" + movie.id class="btn btn-warning") EDIT MOVIE
               .col-xs-3
                 form(action="/admin/" + movie.id method="POST")
                   input(type="hidden" name="_method" value="DELETE")
