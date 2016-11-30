@@ -61,13 +61,14 @@ app.post('/login', (req, res) => {
          email: req.body.email
       }
    }).then((userInDB) => {
-      if (userInDB.password === req.body.password) {
-         req.session.user = userInDB;
-         res.redirect('/user/movies');
-      } else {
-         res.redirect('login');
-      }
-
+      bcrypt.compare(req.body.password, userInDB.passwordDigest, (error, result) => {
+         if (result) {
+            req.session.user = userInDB;
+            res.redirect('/user/movies');
+         } else {
+            res.redirect('login');
+         }
+      });
    }).catch((error) => {
       res.redirect('login');
    });
@@ -78,6 +79,8 @@ app.get('/logout', (req, res) => {
    res.redirect('/');
 });
 
-app.listen(3000, (req, res) => {
-   console.log('App listening on 3000!');
+db.sequelize.sync({force:false}).then(() => {
+   app.listen(3000, (req, res) => {
+      console.log('App listening on 3000!');
+   });
 });

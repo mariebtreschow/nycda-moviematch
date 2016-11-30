@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
@@ -42,11 +44,9 @@ module.exports = function(sequelize, DataTypes) {
       }
    },
     password: {
-      type: DataTypes.STRING,
-      validate: {
-         notEmpty: {
-             msg: 'Password cannot be empty'
-         }
+      type: DataTypes.VIRTUAL,
+      set: function(val) {
+         this.setDataValue('passwordDigest', bcrypt.hashSync(val, 10));
       }
    },
     profileImageURL: DataTypes.STRING,
@@ -57,7 +57,13 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
       }
-    }
-  });
+   },
+   hooks: {
+   beforeCreat: function(user, options) {
+
+      }
+   },
+});
+
   return User;
 };

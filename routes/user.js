@@ -62,6 +62,7 @@ router.post('/message', (req, res) => {
 
 router.get('/profile', (req, res) => {
    db.User.findAll().then((user) => {
+      console.log(user);
       res.render('users/profile', { user: req.session.user });
    });
 });
