@@ -24,7 +24,6 @@ router.get('/admin/movies', (request,response) => {
 });
 
 router.get('/admin/movies/edit/:id', (request,response) => {
-  console.log(request.params.id);
   db.Movie.findById(request.params.id).then((movies) => {
     response.render('admin/edit', { movies: movies });
   });

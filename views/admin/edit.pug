@@ -10,36 +10,36 @@ block content
           input(type="hidden" name="_method" value="PUT")
           div(class="form-group")
             label(for="movie-title") Title
-            input(name="title" type="text" class="form-control" id="movie-title")
+            input(name="title" type="text" class="form-control" id="movie-title" value=movies.title)
           div(class="form-group")
             label(for="movie-image") Image
-            input(name="coverImageURL" type="text" class="form-control" id="movie-image")
+            input(name="coverImageURL" type="text" class="form-control" id="movie-image" value=movies.coverImageURL)
           div(class="form-group")
             label(for="movie-trailer") Trailer
-            input(name="trailer" type="text" class="form-control" id="movie-trailer")
+            input(name="trailer" type="text" class="form-control" id="movie-trailer" value=movies.trailer)
           div(class="form-group")
             label(for="movie-slug") Slug
-            input(name="slug" type="text" class="form-control" id="movie-slug")
+            input(name="slug" type="text" class="form-control" id="movie-slug" value=movies.slug)
           div(class="form-group")
             label(for="movie-director") Director
-            input(name="directorName" type="text" class="form-control" id="movie-director")
+            input(name="directorName" type="text" class="form-control" id="movie-director" value=movies.directorName)
           div(class="form-group")
             label(for="movie-actornames") Actor Names
-            input(name="actorNames" type="text" class="form-control" id="movie-actornames")
+            input(name="actorNames" type="text" class="form-control" id="movie-actornames" value=movies.actorNames)
           div(class="form-group")
             label(for="movie-language") Language
-            input(name="language" type="text" class="form-control" id="movie-language")
+            input(name="language" type="text" class="form-control" id="movie-language" value=movies.language)
           div(class="form-group")
             label(for="movie-subtitles") Subtitles
-            input(name="subtitles" type="text" class="form-control" id="movie-subtitles")
+            input(name="subtitles" type="text" class="form-control" id="movie-subtitles" value=movies.subtitles)
           div(class="form-group")
             label(for="movie-genre") Genre
-            input(name="genre" type="text" class="form-control" id="movie-genre")
+            input(name="genre" type="text" class="form-control" id="movie-genre" value=movies.genre)
           div(class="form-group")
             label(for="movie-length") Length
-            input(name="lengthInMin" type="text" class="form-control" id="movie-length")
+            input(name="lengthInMin" type="text" class="form-control" id="movie-length" value=movies.lengthInMin)
           div(class="form-group")
             label(for="movie-description") Description
-            textarea(name="description" class="form-control" rows=5 id="movie-description")
+            textarea(name="description" class="form-control" rows=5 id="movie-description")=movies.description
           div(class="form-group text-xs-right")
             button(type="submit" class="btn btn-lg btn-success") Edit
