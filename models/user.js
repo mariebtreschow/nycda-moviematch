@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     passwordDigest: {
       type: DataTypes.STRING,
       allowNull: false
-   }
+   },
     passwordResetToken: DataTypes.STRING
   }, {
     classMethods: {

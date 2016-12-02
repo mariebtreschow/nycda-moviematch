@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 
 var express = require('express'),
          db = require('../models'),
- nodemailer = require('nodemailer'),
     router = express.Router();
 
 var requireUser = (req, res, next) => {
@@ -59,7 +58,6 @@ router.get('/movies/:id', (req, res) => {
 
 router.get('/profile', (req, res) => {
    db.User.findAll().then((user) => {
-      console.log(user);
       res.render('users/profile', { user: req.session.user });
    });
 });
@@ -73,6 +71,18 @@ router.get('/profile/edit', (req, res) => {
       res.render('users/edit', { user: req.session.user });
    });
 });
+
+router.put('/:id', (req, res) => {
+   db.User.update(req.body, {
+      where: {
+         id: req.params.id
+      }
+   }).then(() => {
+      res.redirect('profile');
+   }).catch((error) => {
+   });
+});
+
 
 router.get('/edit-password', (req, res) => {
    res.render('users/edit-password', { user: req.session.user });
@@ -88,16 +98,6 @@ router.put('/edit-password/:id', (req, res) => {
    });
 });
 
-router.put('/:id', (req, res) => {
-   db.User.update(req.body, {
-      where: {
-         id: req.params.id
-      }
-   }).then(() => {
-      res.redirect('profile');
-   }).catch((error) => {
-   });
-});
 
 
 
