@@ -1,3 +1,6 @@
+process.env.NODE_ENV = 'test';
+
+
 var assert = require('assert');
  var db = require('../models');
 
@@ -11,10 +14,12 @@ var assert = require('assert');
    it('creates a moviematch', (done) => {
      db.Movie.create({
        title: 'Great blog Article',
+       coverImageURL: 'img',
        trailer: 'trailer',
        slug: 'our test slug',
        directorName: 'kevin',
        actorNames: 'fung',
+       language: 'dutch',
        subtitles: 'sub',
        genre: 'gen',
        lengthInMin: '12',
@@ -22,10 +27,12 @@ var assert = require('assert');
      }).then((post) => {
        assert.equal(post.isNewRecord, false);
        assert.equal(post.title, 'Great blog Article');
+       assert.equal(post.coverImageURL, 'img');
        assert.equal(post.trailer, 'trailer');
        assert.equal(post.slug, 'our test slug');
        assert.equal(post.directorName, 'kevin');
        assert.equal(post.actorNames, 'fung');
+       assert.equal(post.language, 'dutch');
        assert.equal(post.subtitles, 'sub');
        assert.equal(post.genre, 'gen');
        assert.equal(post.lengthInMin, '12');
@@ -36,7 +43,15 @@ var assert = require('assert');
 
    it('cannot create a post if title is missing', (done) => {
      db.Movie.create({
+       coverImageURL: 'img',
+       trailer: 'trailer',
        slug: 'our test slug',
+       directorName: 'kevin',
+       actorNames: 'fung',
+       language: 'dutch',
+       subtitles: 'sub',
+       genre: 'gen',
+       lengthInMin: '12',
        description: '<h1>Awesome!</h1>'
      }).catch((error) => {
        assert.equal(error.errors[0].message, 'title cannot be null');
@@ -45,12 +60,20 @@ var assert = require('assert');
      });
    });
 
-   it('cannot create a post if content is missing', (done) => {
+   it('cannot create a post if description is missing', (done) => {
      db.Movie.create({
        title: 'Great blog Article',
-       slug: 'our test slug'
+       coverImageURL: 'img',
+       trailer: 'trailer',
+       slug: 'our test slug',
+       directorName: 'kevin',
+       actorNames: 'fung',
+       language: 'dutch',
+       subtitles: 'sub',
+       genre: 'gen',
+       lengthInMin: '12',
      }).catch((error) => {
-       assert.equal(error.errors[0].message, 'content cannot be null');
+       assert.equal(error.errors[0].message, 'description cannot be null');
        assert.equal(error.errors.length, 1);
        done();
      });
@@ -66,17 +89,19 @@ var assert = require('assert');
   //    });
   //  });
 
-   it('updates a blog post', (done) => {
+   it('updates a moviematch', (done) => {
      db.Movie.update({
-       title: 'Great blog Article',
-       trailer: 'trailer',
-       slug: 'our test slug',
-       directorName: 'kevin',
-       actorNames: 'fung',
-       subtitles: 'sub',
-       genre: 'gen',
-       lengthInMin: '12',
-       description: '<h1>Awesome!</h1>'
+       title: 'Great blog Article1',
+       coverImageURL: 'img1',
+       trailer: 'trailer1',
+       slug: 'our test slug1',
+       directorName: 'kevin1',
+       actorNames: 'fung1',
+       language: 'dutch1',
+       subtitles: 'sub1',
+       genre: 'gen1',
+       lengthInMin: '121',
+       description: '<h1>Awesome!1</h1>'
      }, {
        where: {
          title: 'Great blog Article'
@@ -84,15 +109,18 @@ var assert = require('assert');
        returning: true
      }).then((updateData) => {
        var post = updateData[1][0];
-       assert.equal(post.title, 'Updated new title');
-       assert.equal(post.trailer, 'traer');
-       assert.equal(post.slug, 'our slug');
-       assert.equal(post.directorName, 'kev');
-       assert.equal(post.actorNames, 'fung11');
-       assert.equal(post.subtitles, 'sub222');
-       assert.equal(post.genre, 'gen22');
+       assert.equal(post.isNewRecord, false);
+       assert.equal(post.title, 'Great blog Article1');
+       assert.equal(post.coverImageURL, 'img1');
+       assert.equal(post.trailer, 'trailer1');
+       assert.equal(post.slug, 'our test slug1');
+       assert.equal(post.directorName, 'kevin1');
+       assert.equal(post.actorNames, 'fung1');
+       assert.equal(post.language, 'dutch1');
+       assert.equal(post.subtitles, 'sub1');
+       assert.equal(post.genre, 'gen1');
        assert.equal(post.lengthInMin, '121');
-       assert.equal(post.description, '<h1>Changed</h1>');
+       assert.equal(post.description, '<h1>Awesome!1</h1>');
        done();
      });
    });
@@ -100,7 +128,7 @@ var assert = require('assert');
    it('deletes a blog post', (done) => {
      db.Movie.destroy({
        where: {
-         title: 'Updated new title'
+         title: 'Great blog Article1'
        }
      }).then((destroyRecordCount) => {
        assert.equal(destroyRecordCount, 1);

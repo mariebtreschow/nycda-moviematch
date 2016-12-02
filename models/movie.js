@@ -38,11 +38,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     lengthInMin: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     description: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
       allowNull: false
     }
   }, {
