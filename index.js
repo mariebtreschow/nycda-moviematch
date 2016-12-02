@@ -7,19 +7,18 @@ const express = require('express'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
-
-
-var app = express(),
+var app = express();
     db = require('./models');
 
-
-var userRouter = require('./routes/user'),
-    adminRouter = require('./routes/admin');
+// const userRouter = require('./routes/user'),
+    // adminRouter = require('./routes/admin'),
+const movieRouter = require('./routes/movies');
 
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extendend: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'pug');
 
 app.use(methodOverride((req, res) => {
    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -37,22 +36,22 @@ app.use(session({
  }));
 
 
+// app.use('/users', userRouter);
 
+// app.use('/admin', adminRouter);
 
-
-app.set('view engine', 'pug');
-
-
-app.use('/', adminRouter);
-
+app.use('/movies', movieRouter);
 
 app.get('/', (req,res) => {
   res.render('homepage');
 });
 
+app.get('/about', (req,res) => {
+  res.render('about');
+});
 
 db.sequelize.sync().then(() => {
-  app.listen(3000, (req, res) => {
-     console.log('App listening on 3000!');
+  app.listen(3000, () => {
+    console.log('App listening on port 3000!');
   });
 });
