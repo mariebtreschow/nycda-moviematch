@@ -27,8 +27,13 @@ module.exports = function(sequelize, DataTypes) {
    },
     profileImageURL: DataTypes.STRING,
     passwordDigest: {
-      type: DataTypes.VIRTUAL,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+         notEmpty: {
+            msg: 'password cannot be null'
+         }
+      }
    },
     passwordResetToken: DataTypes.STRING
   }, {

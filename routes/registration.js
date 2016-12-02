@@ -10,7 +10,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+   console.log(req.body);
    db.User.create(req.body).then((user) => {
+      console.log(user)
       res.redirect('/login');
    }).catch((error) => {
       console.log(error);
