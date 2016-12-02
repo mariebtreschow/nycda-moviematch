@@ -1,10 +1,16 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Movie = sequelize.define('Movie', {
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     coverImageURL: DataTypes.STRING,
     trailer: DataTypes.STRING,
-    slug: DataTypes.STRING,
+    slug: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     directorName: DataTypes.STRING,
     actorNames: DataTypes.STRING,
     language: DataTypes.STRING,

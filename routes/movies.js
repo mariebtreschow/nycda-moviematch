@@ -8,8 +8,8 @@ router.get('/', (request,response) => {
   });
 });
 
-router.get('/:id', (request,response) => {
-  db.Movie.findById(request.params.id).then((movie) => {
+router.get('/:slug', (request,response) => {
+  db.Movie.findById(request.params.slug).then((movie) => {
     response.render('movies/show', { movie: movie });
   });
 });

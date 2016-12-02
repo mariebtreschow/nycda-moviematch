@@ -17,7 +17,7 @@ const movieRouter = require('./routes/movies');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 
 app.use(methodOverride((req, res) => {
@@ -51,6 +51,8 @@ app.get('/about', (req,res) => {
   res.render('about');
 });
 
-app.listen(3000, (req, res) => {
-   console.log('App listening on 3000!');
+db.sequelize.sync().then(() => {
+  app.listen(3000, () => {
+    console.log('App listening on port 3000!');
+  });
 });
