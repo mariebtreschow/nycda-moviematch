@@ -5,8 +5,14 @@ var express = require('express'),
 
 
 
+// router.get('/', (request,response) => {
+//   response.render('admin/movies/index');
+// });
+
 router.get('/', (request,response) => {
-  response.render('admin/movies/index');
+  db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
+    response.render('admin/movies/index', { movies: movies });
+  });
 });
 
 router.get('/admin/movies/new', (request,response) => {
@@ -14,8 +20,9 @@ router.get('/admin/movies/new', (request,response) => {
 });
 
 router.get('/admin/users/adminpanel', (request,response) => {
-  response.render('admin//users/adminpanel');
+  response.render('admin/users/adminpanel');
 });
+
 
 router.get('/admin/movies', (request,response) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
@@ -28,6 +35,8 @@ router.get('/admin/movies/:id/edit', (request,response) => {
     response.render('admin/movies/edit', { movies: movies });
   });
 });
+
+
 
 
 

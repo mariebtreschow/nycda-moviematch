@@ -2,17 +2,22 @@ extends ../../application.pug
 
 block content
   h1 Movie List
-  //- hr
-  //- each movie in movies
-  //-   .container
-  //-     .card.card-block
-  //-       .row
-  //-         .col-md-4.hidden-md-down
-  //-           img(src=movie.coverImageURL alt=movie.title + "Cover Image" class="img-fluid")
-  //-         .col-xs-12.col-md-8
-  //-           h2= movie.title
-  //-           h5= movie.directorName
-  //-           p= movie.description
+  hr
+  each movie in movies
+    .container
+      .card.card-block
+        .row
+          .col-md-4.hidden-md-down
+            img(src=movie.coverImageURL alt=movie.title + "Cover Image" class="img-fluid")
+          .col-xs-12.col-md-8
+            h2= movie.title
+            h6= movie.slug
+            h6= movie.directorName
+            h6= movie.actorNames
+            h6= movie.subtitles
+            h6= movie.genre
+            h6= movie.lengthInMin
+            p= movie.description
 
 
 
