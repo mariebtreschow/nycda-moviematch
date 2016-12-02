@@ -7,14 +7,19 @@ const express = require('express'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
+
+
 var app = express(),
     db = require('./models');
 
-var userRouter = require('./routes/user');
+
+var userRouter = require('./routes/user'),
+    adminRouter = require('./routes/admin');
+
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extendend: true }));
 
 app.use(methodOverride((req, res) => {
    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -31,10 +36,23 @@ app.use(session({
    saveUninitialized: true
  }));
 
+
+
+
+
 app.set('view engine', 'pug');
 
-app.get('/', userRouter);
 
-app.listen(3000, (req, res) => {
-   console.log('App listening on 3000!');
+app.use('/', adminRouter);
+
+
+app.get('/', (req,res) => {
+  res.render('homepage');
+});
+
+
+db.sequelize.sync().then(() => {
+  app.listen(3000, (req, res) => {
+     console.log('App listening on 3000!');
+  });
 });

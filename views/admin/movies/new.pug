@@ -1,0 +1,44 @@
+extends ../../application.pug
+
+block content
+  .container
+    .row
+      .col-xs-8.offset-xs-2
+        h1 Add Movie
+        hr
+        form(action="/admin/movies/new" method="POST")
+          div(class="form-group")
+            label(for="movie-title") Title
+            input(name="title" type="text" class="form-control" id="movie-title")
+          div(class="form-group")
+            label(for="movie-image") Image
+            input(name="coverImageURL" type="text" class="form-control" id="movie-image")
+          div(class="form-group")
+            label(for="movie-trailer") Trailer
+            input(name="trailer" type="text" class="form-control" id="movie-trailer")
+          div(class="form-group")
+            label(for="movie-slug") Slug
+            input(name="slug" type="text" class="form-control" id="movie-slug")
+          div(class="form-group")
+            label(for="movie-director") Director
+            input(name="directorName" type="text" class="form-control" id="movie-director")
+          div(class="form-group")
+            label(for="movie-actornames") Actor Names
+            input(name="actorNames" type="text" class="form-control" id="movie-actornames")
+          div(class="form-group")
+            label(for="movie-language") Language
+            input(name="language" type="text" class="form-control" id="movie-language")
+          div(class="form-group")
+            label(for="movie-subtitles") Subtitles
+            input(name="subtitles" type="text" class="form-control" id="movie-subtitles")
+          div(class="form-group")
+            label(for="movie-genre") Genre
+            input(name="genre" type="text" class="form-control" id="movie-genre")
+          div(class="form-group")
+            label(for="movie-length") Length
+            input(name="lengthInMin" type="text" class="form-control" id="movie-length")
+          div(class="form-group")
+            label(for="movie-description") Description
+            textarea(name="description" class="form-control" rows=5 id="movie-description")
+          div(class="form-group text-xs-right")
+            button(type="submit" class="btn") Add Movie
