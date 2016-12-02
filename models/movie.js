@@ -6,44 +6,35 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     coverImageURL: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     trailer: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     slug: {
       type: DataTypes.STRING,
       allowNull: false
     },
     directorName: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     actorNames: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     language: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     subtitles: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     genre: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
     },
     lengthInMin: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     description: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.TEXT
     }
   }, {
     classMethods: {
