@@ -5,15 +5,15 @@ const express = require('express'),
 app.set('view engine', 'pug');
 
 
-router.get('/movies', (request,response) => {
+router.get('/', (request,response) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
-    response.render('/all-movies', { movies: movies });
+    response.render('movies', { movies: movies });
   });
 });
 
-router.get('/movies/:id', (request,response) => {
-  db.Movie.findById(request.params.id).then((movies) => {
-    response.render('/movie-layout', { movies: movies });
+router.get('/:id', (request,response) => {
+  db.Movie.findById(request.params.id).then((movie) => {
+    response.render('movies/show', { movie: movie });
   });
 });
 

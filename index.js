@@ -10,7 +10,7 @@ const express = require('express'),
 var app = express();
     db = require('./models');
 
-// var userRouter = require('./routes/user'),
+// const userRouter = require('./routes/user'),
     // adminRouter = require('./routes/admin'),
     // movieRouter = require('./routes/movies');
 
@@ -18,6 +18,7 @@ var app = express();
 app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true}));
+app.set('view engine', 'pug');
 
 app.use(methodOverride((req, res) => {
    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -35,11 +36,12 @@ app.use(session({
  }));
 
 
-app.set('view engine', 'pug');
 
-// app.get('/', userRouter);
-//
-// app.get('/', userRouter);
+app.use('/users', userRouter);
+
+app.use('/admin', adminRouter);
+
+app.use('/movies', movieRouter);
 
 app.get('/', (req,res) => {
   res.render('homepage');
