@@ -5,12 +5,13 @@ const express = require('express'),
       displayRoutes = require('express-routemap'),
       session = require('express-session'),
       bcrypt = require('bcrypt'),
-      morgan = require('morgan'),
-      Sequelize = require('sequelize');
+      morgan = require('morgan');
+
+
 
 var app = express(),
-    db = require('./models'),
-    sequelize = new Sequelize('moviematch', process.env.DB_USERNAME, process.env.DB_PASSWORD, { dialect: 'postgres' });
+    db = require('./models');
+
 
 var userRouter = require('./routes/user'),
     adminRouter = require('./routes/admin');
@@ -42,13 +43,7 @@ app.use(session({
 app.set('view engine', 'pug');
 
 
-
-// app.use('/', userRouter);
-
-
 app.use('/', adminRouter);
-
-// app.get('/', adminRouter);
 
 
 app.get('/', (req,res) => {
@@ -56,7 +51,8 @@ app.get('/', (req,res) => {
 });
 
 
-
-app.listen(3000, (req, res) => {
-   console.log('App listening on 3000!');
+db.sequelize.sync().then(() => {
+  app.listen(3000, (req, res) => {
+     console.log('App listening on 3000!');
+  });
 });
