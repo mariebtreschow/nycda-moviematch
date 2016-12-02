@@ -98,7 +98,4 @@ router.put('/edit-password/:id', (req, res) => {
    });
 });
 
-
-
-
 module.exports = router;

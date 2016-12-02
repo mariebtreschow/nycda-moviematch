@@ -22,29 +22,29 @@ describe('User Model Testing', () => {
       });
    });
 
-   //it('user can update info', (done) => {
-      //ub.User.update({
-      //   name: 'Marie'
-   //   }, { where: {
-      //   name: 'Anna'
-   //   },
-      //returning: true
-   //}).then((updateData) => {
-      //var newName = updateData[0];
+   it('user can update info', (done) => {
+ub.User.update({
+         name: 'Marie'
+      }, { where: {
+         name: 'Anna'
+      },
+      returning: true
+   }).then((updateData) => {
+      var newName = updateData[0];
 
-      //assert.equal(user.name, 'Anna');
-      //done();
-   //   });
-//   });
+      assert.equal(user.name, 'Anna');
+      done();
+      });
+   });
 
-   //it('can delete a user', (done) => {
-   //   db.User.destroy({
-   //      where: {
-   //         name: 'Anna'
-   //      }
-   //   }).then((destroyRecordCount) => {
-   //      assert.equal(estroyRecordCount, 1);
-   //      done();
-   //   });
-   //});
+   it('can delete a user', (done) => {
+      db.User.destroy({
+         where: {
+            name: 'Anna'
+         }
+      }).then((destroyRecordCount) => {
+         assert.equal(destroyRecordCount, 1);
+         done();
+      });
+   });
 });
