@@ -15,6 +15,8 @@ var app = express(),
     db = require('./models');
 
 var userRouter = require('./routes/user');
+var authenticationRouter = require('./routes/authentication');
+
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -39,49 +41,16 @@ app.set('view engine', 'pug');
 
 app.use('/user', userRouter);
 
-app.get('/register', (req, res) => {
-   res.render('users/new');
-});
+app.use('/login', authenticationRouter);
 
-app.post('/register', (req, res) => {
-   db.User.create(req.body).then((user) => {
-      res.redirect('/login');
-   }).catch((error) => {
-      console.log(error);
-      res.render('users/new');
-   });
-});
-
-app.get('/login', (req, res) => {
-   console.log(req.session);
-   res.render('login');
-});
-
-app.post('/login', (req, res) => {
-   db.User.findOne({
-      where: {
-         email: req.body.email
-      }
-   }).then((userInDB) => {
-      bcrypt.compare(req.body.password, userInDB.passwordDigest, (error, result) => {
-         if (result) {
-            req.session.user = userInDB;
-            res.redirect('/user/movies');
-         } else {
-            res.redirect('login');
-         }
-      });
-   }).catch((error) => {
-      res.redirect('login');
-   });
-});
+app.use('/register', authenticationRouter);
 
 app.get('/logout', (req, res) => {
    req.session.user = undefined;
    res.redirect('/');
 });
 
-db.sequelize.sync({force:false}).then(() => {
+db.sequelize.sync({}).then(() => {
    app.listen(3000, (req, res) => {
       console.log('App listening on 3000!');
    });

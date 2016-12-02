@@ -21,7 +21,6 @@ router.get('/movies', (req, res) => {
    });
 });
 
-
 router.get('/movies/:id', (req, res) => {
    db.Movie.findOne(req.body, {
       where: {
@@ -30,8 +29,7 @@ router.get('/movies/:id', (req, res) => {
    }).then((movie) => {
       res.render('movie', { movie: movie, user: users });
    }).catch((error) => {
-      console.log('This is the error:');
-      console.log(error);
+      throw error;
    });
 });
 

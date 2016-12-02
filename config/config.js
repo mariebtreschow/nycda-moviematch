@@ -7,9 +7,9 @@ module.exports = {
     "dialect": "postgres"
   },
   "test": {
-    "username": "marietreschow",
+    "username": process.env.DB_USERNAME,
     "password": null,
-    "database": "moviematch",
+    "database": "moviematch_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
