@@ -74,6 +74,20 @@ router.get('/profile/edit', (req, res) => {
    });
 });
 
+router.get('/edit-password', (req, res) => {
+   res.render('users/edit-password', { user: req.session.user });
+});
+
+router.put('/edit-password/:id', (req, res) => {
+   db.User.update(req.body, {
+      where: {
+         id: req.params.id
+      }
+   }).then(() => {
+      res.redirect('profile');
+   });
+});
+
 router.put('/:id', (req, res) => {
    db.User.update(req.body, {
       where: {
@@ -82,19 +96,9 @@ router.put('/:id', (req, res) => {
    }).then(() => {
       res.redirect('profile');
    }).catch((error) => {
-      console.log('This is the error:');
-      console.log(error);
    });
 });
 
-router.delete('/:id', (req, res) => {
-   db.User.destroy({
-      where: {
-         id: req.params.id
-      }
-   }).then(() => {
-      res.redirect('/');
-   });
-});
+
 
 module.exports = router;

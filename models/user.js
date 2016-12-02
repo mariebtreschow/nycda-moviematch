@@ -21,13 +21,15 @@ module.exports = function(sequelize, DataTypes) {
    },
     password: {
       type: DataTypes.VIRTUAL,
-      allowNull: false,
       set: function(val) {
          this.setDataValue('passwordDigest', bcrypt.hashSync(val, 10));
       }
    },
     profileImageURL: DataTypes.STRING,
-    passwordDigest: DataTypes.STRING,
+    passwordDigest: {
+      type: DataTypes.STRING,
+      allowNull: false
+   }
     passwordResetToken: DataTypes.STRING
   }, {
     classMethods: {
@@ -36,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
       }
    },
    hooks: {
-   beforeCreat: function(user, options) {
+   beforeCreate: function(user, options) {
 
       }
    },

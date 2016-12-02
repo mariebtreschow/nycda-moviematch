@@ -16,6 +16,8 @@ var app = express(),
 
 var userRouter = require('./routes/user');
 var authenticationRouter = require('./routes/authentication');
+var registrationRouter = require('./routes/registration');
+
 
 
 app.use(express.static('public'));
@@ -43,7 +45,7 @@ app.use('/user', userRouter);
 
 app.use('/login', authenticationRouter);
 
-app.use('/register', authenticationRouter);
+app.use('/register', registrationRouter);
 
 app.get('/logout', (req, res) => {
    req.session.user = undefined;

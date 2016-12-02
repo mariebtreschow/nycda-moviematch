@@ -13,10 +13,9 @@ block content
 					h5="Name: " + user.name + " " + user.surname
 					h5="Email: " + user.email
 					h5="Age: " + user.age
-				.col-xs-2.offset-xs-3
+				.col-xs-4
 					a(href='/user/profile/edit')
-						button(type="submit" class="btn btn-lg btn-warning") Edit User
-				.col-xs-2
-					form(action="/user/" + user.id method="POST")
-						input(type="hidden" name="_method" value="DELETE")
-						button(type="submit" class="btn btn-lg btn-danger") Delete User
+						button(type="submit" class="btn btn-lg ") Edit User
+
+					a(href='/user/edit-password')
+						button(type="submit" class="btn btn-lg") Edit Password
