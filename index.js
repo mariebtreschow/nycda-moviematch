@@ -12,7 +12,7 @@ var app = express();
 
 // const userRouter = require('./routes/user'),
     // adminRouter = require('./routes/admin'),
-    // movieRouter = require('./routes/movies');
+const movieRouter = require('./routes/movies');
 
 
 app.use(express.static('public'));
@@ -37,9 +37,9 @@ app.use(session({
 
 
 
-app.use('/users', userRouter);
+// app.use('/users', userRouter);
 
-app.use('/admin', adminRouter);
+// app.use('/admin', adminRouter);
 
 app.use('/movies', movieRouter);
 

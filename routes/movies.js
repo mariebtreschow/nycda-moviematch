@@ -2,9 +2,6 @@ const express = require('express'),
       db = require('../models'),
       router = express.Router();
 
-app.set('view engine', 'pug');
-
-
 router.get('/', (request,response) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
     response.render('movies', { movies: movies });
