@@ -9,15 +9,15 @@ module.exports = {
   "test": {
     "username": process.env.DB_USERNAME,
     "password": null,
-    "database": "moviematch",
+    "database": "moviematch_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
+    "username": process.env.DB_USERNAME,
     "password": null,
     "database": "moviematch",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   }
-}
+};
