@@ -5,43 +5,19 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     name: {
       type: DataTypes.STRING,
-      validate: {
-         notEmpty: {
-             msg: 'Name cannot be empty'
-         }
-      }
+      allowNull: false
    },
-    surname: {
+   surname: {
       type: DataTypes.STRING,
-      validate: {
-         notEmpty: {
-             msg: 'Surame cannot be empty'
-         }
-      }
-   },
-    slug: {
-      type: DataTypes.STRING,
-      validate: {
-         notEmpty: {
-            msg: 'Slug cannot be empty'
-         }
-      }
+      allowNull: false
    },
     age: {
       type: DataTypes.INTEGER,
-      validate: {
-         notEmpty: {
-             msg: 'Age cannot be empty'
-         }
-      }
+      allowNull: false
    },
     email: {
       type: DataTypes.STRING,
-      validate: {
-         notEmpty: {
-             msg: 'Email cannot be empty'
-         }
-      }
+      allowNull: false
    },
     password: {
       type: DataTypes.VIRTUAL,

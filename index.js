@@ -1,16 +1,18 @@
 const express = require('express'),
       pug = require('pug'),
-      sequelize = require('sequelize'),
+      Sequelize = require('sequelize'),
       bodyParser = require('body-parser'),
       displayRoutes = require('express-routemap'),
       methodOverride = require('method-override'),
       session = require('express-session'),
       base64url = require('base64url'),
       bcrypt = require('bcrypt'),
+
       morgan = require('morgan');
 
 var app = express(),
-     db = require('./models');
+    sequelize = new Sequelize('moviematch', process.env.DB_USERNAME, process.env.DB_PASSWORD, { dialect: 'postgres' }),
+    db = require('./models');
 
 var userRouter = require('./routes/user');
 

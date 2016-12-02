@@ -1,25 +1,25 @@
 extends ../application.pug
 
 	block content
-		
+
 		.container
 			h1=movie.title
 				.row
 					.col-xs-8
 						.card.card-block
-							h6=movie.trailer
-							h6=movie.genre
-							h6=movie.producer
-							h6=movie.about
-							h6=movie.cinema
-							h6=movie.schedule
+							h6= movie.trailer
+							h6= movie.genre
+							h6= movie.producer
+							h6= movie.about
+							h6= movie.cinema
+							h6= movie.schedule
 		.container
          each user in users
             .row
                .col-xs.8
                   .card.card-block
                      a(href="/user/profile/:id")
-                        img(src=user.profileImageURL alt=movie.title + "Cover Image" class="img-fluid")
+                        img(src=user.profileImageURL alt=movie.title class="img-fluid")
                      h4=user.name + user.surname
                      h5=user.age
                         .col-xs-2

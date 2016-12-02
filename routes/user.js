@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt');
 
-   var express = require('express'),
-            db = require('../models'),
-    nodemailer = require('nodemailer'),
-        router = express.Router();
+var express = require('express'),
+         db = require('../models'),
+ nodemailer = require('nodemailer'),
+    router = express.Router();
 
-var userLoggedIn = (req, res, next) => {
+var requireUser = (req, res, next) => {
    if (req.session.user) {
       next();
    } else {
@@ -13,7 +13,7 @@ var userLoggedIn = (req, res, next) => {
    }
 };
 
-router.use(userLoggedIn);
+router.use(requireUser);
 
 router.get('/movies', (req, res) => {
    db.User.findAll().then((user) => {
@@ -66,7 +66,7 @@ router.get('/profile', (req, res) => {
    });
 });
 
-router.get('/profile/:id/edit', (req, res) => {
+router.get('/profile/edit', (req, res) => {
    db.User.findOne(req.body, {
       where: {
          id: req.params.id
@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
    });
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
    db.User.destroy({
       where: {
          id: req.params.id

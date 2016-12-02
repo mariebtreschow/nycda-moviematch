@@ -14,23 +14,23 @@ block content
 				hr
 				form(action="/register" method="POST")
 					div(class="form-group")
-						lable(for="profileImageURL") Picture Link:
-						input(name="profileImageURL" type="text" class="form-control")
+						lable(for="user-profileImageURL") Picture Link:
+						input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL")
 					div(class="form-group")
-						lable(for="name") Name:
-						input(name="name" type="text" class="form-control")
+						lable(for="user-name") Name:
+						input(name="name" type="text" class="form-control" id="user-name")
 					div(class="form-group")
-						lable(for="lastname") Surname:
-						input(name="surname" type="text" class="form-control" )
+						lable(for="user-surname") Surname:
+						input(name="surname" type="text" class="form-control" id="user-surname")
 					div(class="form-group")
-						lable(for="email") Email:
-						input(name="email" type="text" class="form-control")
+						lable(for="user-email") Email:
+						input(name="email" type="text" class="form-control" id="user-email")
 					div(class="form-group")
-						lable(for="age") Age:
-						input(name="age" type="integer" class="form-control")
+						lable(for="user-age") Age:
+						input(name="age" type="integer" class="form-control" id="user-age")
 					div(class="form-group")
-						lable(for="password") Password:
-						input(name="password" type="password" class="form-control")
+						lable(for="user-password") Password:
+						input(name="password" type="password" class="form-control" id="user-password")
 
 					div(class="form-group text-xs-center")
 						button(type="submit" class="btn btn-block btn-ls btn-success") Create a New User
