@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add assert
+  /usr/local/bin/node /usr/local/bin/yarn install
 
 PATH: 
   /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
