@@ -11,7 +11,12 @@ block content
             img(src=movie.coverImageURL alt=movie.title + "Cover Image" class="img-fluid")
           .col-xs-12.col-md-8
             h2= movie.title
-            h5= movie.directorName
+            h6= movie.slug
+            h6= movie.directorName
+            h6= movie.actorNames
+            h6= movie.subtitles
+            h6= movie.genre
+            h6= movie.lengthInMin
             p= movie.description
             .row
               .col-xs-3.offset-xs-6
