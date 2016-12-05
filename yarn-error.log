@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn install
+  /usr/local/bin/node /usr/local/bin/yarn add bootstrap@4.0.0-alpha.5
 
 PATH: 
   /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
@@ -1085,10 +1085,10 @@ Lockfile:
 
 Trace: 
   SyntaxError: Unknown token 215:1
-      at Parser.unexpected (/usr/local/lib/node_modules/yarn/lib/lockfile/parse.js:218:11)
-      at Parser.parse (/usr/local/lib/node_modules/yarn/lib/lockfile/parse.js:323:14)
-      at exports.default (/usr/local/lib/node_modules/yarn/lib/lockfile/parse.js:13:17)
-      at /usr/local/lib/node_modules/yarn/lib/lockfile/wrapper.js:129:60
+      at Parser.unexpected (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/parse.js:218:11)
+      at Parser.parse (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/parse.js:323:14)
+      at exports.default (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/parse.js:13:17)
+      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/wrapper.js:129:60
       at next (native)
-      at step (/usr/local/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
-      at /usr/local/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+      at step (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:20
