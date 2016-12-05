@@ -36,8 +36,21 @@ router.get('/admin/movies/:id/edit', (request,response) => {
   });
 });
 
+router.get('/admin/users/:id/edit', (request,response) => {
+  db.Users.findById(request.params.id).then((users) => {
+    response.render('admin/users/edit', { users: users });
+  });
+});
 
-
+router.put('/admin/users/:id', (request, response) => {
+  db.User.update(request.body, {
+    where: {
+      id: request.params.id
+    }
+  }).then(() => {
+    response.redirect('/admin/users/adminpanel');
+  });
+});
 
 
 router.post('/admin/movies/new', (request, response) => {
