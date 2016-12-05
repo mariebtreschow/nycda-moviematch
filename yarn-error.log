@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn install
+  /usr/local/bin/node /usr/local/bin/yarn install bcrypt
 
 PATH: 
   /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
