@@ -7,15 +7,11 @@ const express = require('express'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
-
-
 var app = express(),
     db = require('./models');
 
-
 var userRouter = require('./routes/user'),
     adminRouter = require('./routes/admin');
-
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -37,19 +33,27 @@ app.use(session({
  }));
 
 
-
-
-
 app.set('view engine', 'pug');
 
 
-app.use('/', adminRouter);
+app.use('/admin', adminRouter);
 
 
-app.get('/', (req,res) => {
-  res.render('homepage');
+// app.get('/', (req,res) => {
+//   res.render('homepage');
+// });
+
+app.get('/', (request,response) => {
+  db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
+    response.render('admin/movies/index', { movies: movies });
+  });
 });
 
+
+app.get('/logout', (request, response) => {
+  request.session.user = undefined;
+  response.redirect('/');
+});
 
 db.sequelize.sync().then(() => {
   app.listen(3000, (req, res) => {

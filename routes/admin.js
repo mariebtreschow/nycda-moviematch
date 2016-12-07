@@ -15,34 +15,34 @@ var express = require('express'),
 //   });
 // });
 
-router.get('/admin/movies/new', (request,response) => {
+router.get('/movies/new', (request,response) => {
   response.render('admin/movies/new');
 });
 
-router.get('/admin/users/adminpanel', (request,response) => {
+router.get('/users/adminpanel', (request,response) => {
   response.render('admin/users/adminpanel');
 });
 
 
-router.get('/admin/movies', (request,response) => {
+router.get('/movies', (request,response) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
     response.render('admin/movies/show', { movies: movies });
   });
 });
 
-router.get('/admin/movies/:id/edit', (request,response) => {
+router.get('/movies/:id/edit', (request,response) => {
   db.Movie.findById(request.params.id).then((movies) => {
     response.render('admin/movies/edit', { movies: movies });
   });
 });
 
-router.get('/admin/users/:id/edit', (request,response) => {
+router.get('/users/:id/edit', (request,response) => {
   db.Users.findById(request.params.id).then((users) => {
     response.render('admin/users/edit', { users: users });
   });
 });
 
-router.put('/admin/users/:id', (request, response) => {
+router.put('/users/:id', (request, response) => {
   db.User.update(request.body, {
     where: {
       id: request.params.id
@@ -53,7 +53,7 @@ router.put('/admin/users/:id', (request, response) => {
 });
 
 
-router.post('/admin/movies/new', (request, response) => {
+router.post('/movies/new', (request, response) => {
   if (request.body.title) {
     console.log(request.body);
     db.Movie.create(request.body).then(() => {
@@ -64,7 +64,7 @@ router.post('/admin/movies/new', (request, response) => {
   }
 });
 
-router.put('/admin/movies/:id', (request, response) => {
+router.put('/movies/:id', (request, response) => {
   db.Movie.update(request.body, {
     where: {
       id: request.params.id
@@ -74,7 +74,7 @@ router.put('/admin/movies/:id', (request, response) => {
   });
 });
 
-router.delete('/admin/:id', (request, response) => {
+router.delete('/:id', (request, response) => {
   db.Movie.destroy({
     where: {
       id: request.params.id
@@ -83,12 +83,5 @@ router.delete('/admin/:id', (request, response) => {
     response.redirect('/admin/movies');
   });
 });
-
-
-router.get('/logout', (request, response) => {
-  request.session.user = undefined;
-  response.redirect('/');
-});
-
 
 module.exports = router;
