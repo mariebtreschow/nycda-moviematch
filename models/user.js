@@ -12,12 +12,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
    },
     age: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
    },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
    },
     password: {
       type: DataTypes.VIRTUAL,

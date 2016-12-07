@@ -6,17 +6,14 @@ const express = require('express'),
       session = require('express-session'),
       base64url = require('base64url'),
       bcrypt = require('bcrypt'),
-
       morgan = require('morgan');
 
 var app = express(),
     db = require('./models');
 
-var userRouter = require('./routes/user');
-var authenticationRouter = require('./routes/authentication');
-var registrationRouter = require('./routes/registration');
-
-
+const userRouter = require('./routes/user'),
+      authenticationRouter = require('./routes/authentication'),
+      movieRouter = require('./routes/movie');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -39,19 +36,24 @@ app.use(session({
 
 app.set('view engine', 'pug');
 
-app.use('/user', userRouter);
+app.use('/', userRouter);
 
-app.use('/login', authenticationRouter);
+app.use('/', authenticationRouter);
 
-app.use('/register', registrationRouter);
+app.use('/', movieRouter);
 
-app.get('/logout', (req, res) => {
-   req.session.user = undefined;
-   res.redirect('/');
+
+app.get('/', (req, res) => {
+   res.render('homepage');
+});
+
+app.get('/users/:id', (req, res) => {
+   // this will be other users profile
 });
 
 db.sequelize.sync({}).then(() => {
    app.listen(3000, (req, res) => {
+      displayRoutes(app);
       console.log('App listening on 3000!');
    });
 });

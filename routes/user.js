@@ -1,36 +1,7 @@
-const bcrypt = require('bcrypt');
-
-var express = require('express'),
-         db = require('../models'),
-    router = express.Router();
-
-var requireUser = (req, res, next) => {
-   if (req.session.user) {
-      next();
-   } else {
-      res.redirect('/login');
-   }
-};
-
-router.use(requireUser);
-
-router.get('/movies', (req, res) => {
-   db.User.findAll().then((user) => {
-      res.render('users/index', { user: req.session.user });
-   });
-});
-
-router.get('/movies/:id', (req, res) => {
-   db.Movie.findOne(req.body, {
-      where: {
-         id: req.params.id
-      }
-   }).then((movie) => {
-      res.render('movie', { movie: movie, user: users });
-   }).catch((error) => {
-      throw error;
-   });
-});
+const bcrypt = require('bcrypt'),
+      express = require('express'),
+      db = require('../models'),
+      router = express.Router();
 
 //router.get('/message', (req, res) => {
    //res.render('users/message');
@@ -56,27 +27,27 @@ router.get('/movies/:id', (req, res) => {
 //   });
 //});
 
-router.get('/profile/:id', (req, res) => {
+router.get('/profile', (req, res) => {
    db.User.findOne({
       where: {
-         id: req.params.id
+         id: req.session.user.id
       }
    }).then((user) => {
       res.render('users/profile', { user: req.session.user, userProfile: user });
    });
 });
 
-router.get('/profile/:id/edit', (req, res) => {
+router.get('/profile/edit', (req, res) => {
    db.User.findOne(req.body, {
       where: {
-         id: req.params.id
+         id: req.session.user.id
       }
    }).then((user) => {
       res.render('users/edit', { user: req.session.user, userProfile: user });
    });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/profile', (req, res) => {
    db.User.update(req.body, {
       where: {
          id: req.params.id
