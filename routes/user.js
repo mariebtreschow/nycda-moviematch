@@ -16,7 +16,7 @@ router.use(requireUser);
 
 router.get('/movies', (req, res) => {
    db.User.findAll().then((user) => {
-      res.render('users/index', {user: req.session.user });
+      res.render('users/index', { user: req.session.user });
    });
 });
 
@@ -56,19 +56,23 @@ router.get('/movies/:id', (req, res) => {
 //   });
 //});
 
-router.get('/profile', (req, res) => {
-   db.User.findAll().then((user) => {
-      res.render('users/profile', { user: req.session.user });
+router.get('/profile/:id', (req, res) => {
+   db.User.findOne({
+      where: {
+         id: req.params.id
+      }
+   }).then((user) => {
+      res.render('users/profile', { user: req.session.user, userProfile: user });
    });
 });
 
-router.get('/profile/edit', (req, res) => {
+router.get('/profile/:id/edit', (req, res) => {
    db.User.findOne(req.body, {
       where: {
          id: req.params.id
       }
    }).then((user) => {
-      res.render('users/edit', { user: req.session.user });
+      res.render('users/edit', { user: req.session.user, userProfile: user });
    });
 });
 
@@ -78,14 +82,14 @@ router.put('/:id', (req, res) => {
          id: req.params.id
       }
    }).then(() => {
-      res.redirect('profile');
+      res.redirect('profile/' + req.params.id);
    }).catch((error) => {
    });
 });
 
 
 router.get('/edit-password', (req, res) => {
-   res.render('users/edit-password', { user: req.session.user });
+   res.render('users/edit-password', { user: req.session.user, userProfile: user });
 });
 
 router.put('/edit-password/:id', (req, res) => {
