@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
 
 
 router.get('/edit-password', (req, res) => {
-   res.render('users/edit-password', { user: req.session.user, userProfile: user });
+   res.render('users/edit-password', { user: req.session.user });
 });
 
 router.put('/edit-password/:id', (req, res) => {
@@ -98,7 +98,7 @@ router.put('/edit-password/:id', (req, res) => {
          id: req.params.id
       }
    }).then(() => {
-      res.redirect('profile');
+      res.redirect('/user/profile/' + req.params.id );
    });
 });
 
