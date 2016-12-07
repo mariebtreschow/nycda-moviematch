@@ -2,6 +2,10 @@ const express = require('express'),
       db = require('../models'),
       router = express.Router();
 
+router.get('/movies', (req, res) => {
+   res.render('users/index', { user: req.session.user });
+});
+
 router.get('/movies/:slug', (req, res) => {
    db.Movie.findOne(req.body, {
       where: {
