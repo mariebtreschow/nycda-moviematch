@@ -8,7 +8,7 @@ const express = require('express'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
-var app = express(),
+var app = express();
     db = require('./models');
 
 const userRouter = require('./routes/user'),
@@ -17,7 +17,8 @@ const userRouter = require('./routes/user'),
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'pug');
 
 app.use(methodOverride((req, res) => {
    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -32,9 +33,7 @@ app.use(session({
    secret: 'secret key',
    resave: true,
    saveUninitialized: true
- }));
-
-app.set('view engine', 'pug');
+}));
 
 app.use('/', userRouter);
 
@@ -49,6 +48,10 @@ app.get('/', (req, res) => {
 
 app.get('/users/:id', (req, res) => {
    // this will be other users profile
+});
+
+app.get('/about', (req,res) => {
+  res.render('about');
 });
 
 db.sequelize.sync({}).then(() => {
