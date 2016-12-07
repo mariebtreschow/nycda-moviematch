@@ -14,6 +14,7 @@ module.exports = {
     "dialect": "postgres"
   },
   "production": {
+
     "username": process.env.DB_USERNAME,
     "password": null,
     "database": "moviematch",
