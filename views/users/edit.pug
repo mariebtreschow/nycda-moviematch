@@ -15,19 +15,19 @@ block content
 				form(action="/user/" + user.id method="POST")
 					input(type="hidden" name="_method" value="PUT")
 					div(class="form-group")
-						lable(for="profileImageURL") Picture Link:
+						label(for="profileImageURL") Picture Link:
 						input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL" value=userProfile.profileImageURL)
 					div(class="form-group")
-						lable(for="user-name") Name:
+						label(for="user-name") Name:
 						input(name="name" type="text" class="form-control" id="user-name" value=userProfile.name)
 					div(class="form-group")
-						lable(for="user-surname") Surname:
+						label(for="user-surname") Surname:
 						input(name="surname" type="text" class="form-control" id="user-surname" value=userProfile.surname)
 					div(class="form-group")
-						lable(for="user-email") Email:
+						label(for="user-email") Email:
 						input(name="email" type="text" class="form-control" id="user-email" value=userProfile.email)
 					div(class="form-group")
-						lable(for="user-age") Age:
+						label(for="user-age") Age:
 						input(name="age" type="integer" class="form-control" id="user-age" value=userProfile.age)
 
 					div(class="form-group text-xs-center")
