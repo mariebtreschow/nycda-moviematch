@@ -1,0 +1,35 @@
+extends ./application.pug
+
+block content
+	.container
+		.row
+			.col-xs-6.offset-xs-2
+				if errors
+					each error in errors
+						div(class="alert alert-danger" role="alert")
+							span= error.message
+				br
+				h1 Create a New User:
+				hr
+				form(action="/register" method="POST")
+					div(class="form-group")
+						label(for="user-profileImageURL") Picture Link:
+						input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL")
+					div(class="form-group")
+						label(for="user-name") Name:
+						input(name="name" type="text" class="form-control" id="user-name")
+					div(class="form-group")
+						label(for="user-surname") Surname:
+						input(name="surname" type="text" class="form-control" id="user-surname")
+					div(class="form-group")
+						label(for="user-email") Email:
+						input(name="email" type="text" class="form-control" id="user-email")
+					div(class="form-group")
+						label(for="user-age") Age:
+						input(name="age" type="integer" class="form-control" id="user-age")
+					div(class="form-group")
+						label(for="user-password") Password:
+						input(name="password" type="password" class="form-control" id="user-password")
+
+					div(class="form-group text-xs-center")
+						button(type="submit" class="btn btn-block btn-ls btn-success") Create a New User

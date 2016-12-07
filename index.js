@@ -1,19 +1,19 @@
 const express = require('express'),
       pug = require('pug'),
       bodyParser = require('body-parser'),
-      methodOverride = require('method-override'),
       displayRoutes = require('express-routemap'),
+      methodOverride = require('method-override'),
       session = require('express-session'),
+      base64url = require('base64url'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
 var app = express();
     db = require('./models');
 
-// const userRouter = require('./routes/user'),
-    // adminRouter = require('./routes/admin'),
-const movieRouter = require('./routes/movies');
-
+const userRouter = require('./routes/user'),
+      authenticationRouter = require('./routes/authentication'),
+      movieRouter = require('./routes/movie');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -33,25 +33,30 @@ app.use(session({
    secret: 'secret key',
    resave: true,
    saveUninitialized: true
- }));
+}));
+
+app.use('/', userRouter);
+
+app.use('/', authenticationRouter);
+
+app.use('/', movieRouter);
 
 
-// app.use('/users', userRouter);
+app.get('/', (req, res) => {
+   res.render('homepage');
+});
 
-// app.use('/admin', adminRouter);
-
-app.use('/movies', movieRouter);
-
-app.get('/', (req,res) => {
-  res.render('homepage');
+app.get('/users/:id', (req, res) => {
+   // this will be other users profile
 });
 
 app.get('/about', (req,res) => {
   res.render('about');
 });
 
-db.sequelize.sync().then(() => {
-  app.listen(3000, () => {
-    console.log('App listening on port 3000!');
-  });
+db.sequelize.sync({}).then(() => {
+   app.listen(3000, (req, res) => {
+      displayRoutes(app);
+      console.log('App listening on 3000!');
+   });
 });
