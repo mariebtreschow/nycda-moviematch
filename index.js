@@ -53,7 +53,9 @@ app.use('/', movieRouter);
 
 
 app.get('/', (req, res) => {
-   res.render('homepage');
+  db.Movie.findAll().then((movies) => {
+    res.render('homepage', { movies: movies });
+  });
 });
 
 app.get('/users/:id', (req, res) => {

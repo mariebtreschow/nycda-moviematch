@@ -3,7 +3,11 @@ const express = require('express'),
       router = express.Router();
 
 router.get('/movies', (req, res) => {
-   res.render('users/index', { user: req.session.user });
+  db.Movie.findAll().then((movies) => {
+    res.render('users/index', { user: req.session.user, movies: movies});
+  }).catch((error) => {
+    console.log(error);
+  });
 });
 
 
