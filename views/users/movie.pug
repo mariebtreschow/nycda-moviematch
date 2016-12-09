@@ -2,48 +2,31 @@ extends ../application.pug
 
 block content
 
-	iframe(width="100%" height="100%"  src="https://www.youtube.com/embed/frdj1zb9sMY" frameborder="0" allowfullscreen)
-	//- iframe(width="100%" height="100%"  src=movie.trailer frameborder="0" allowfullscreen)
+	iframe(width="100%" height="100%" src=movie.trailer frameborder="0" allowfullscreen)
 
 	.container-fluid
 		.row
 			.col-xs-1
 			.col-md-3
-				img(src="http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2016/10/rogueone_onesheetA.jpg" height="350" float-xs-left)
-				//- img(src=movie.coverImageURL height="350" float-xs-left)
-
+				img(src=movie.coverImageURL height="350" float-xs-left)
+			hr
 			.col-xs-6
-				h1="Rogue One: a Star Wars story"
-				h6="David Yates"
-				h6="Eddie Redmayne', 'Ezra Miller', 'Jon Voight"
-				h6="Adventure, Fantasy"
-				h6=134
-				p="In a time of conflict, a group of unlikely heroes band together on a mission to steal the plans to the Death Star, the Empires ultimate weapon of destruction. This key event in the Star Wars timeline brings together ordinary people who choose to do extraordinary things, and in doing so, become part of something greater than themselves."
-
-				//- h1= movie.title
-				//- h6= movie.directorName
-				//- h6= movie.actorNames
-				//- h6= movie.subtitles
-				//- h6= movie.genre
-				//- h6= movie.lengthInMin
-				//- p= movie.description
+				h1= 'Title:' + " " + movie.title
+				h6= 'Director:' + " " + movie.directorName
+				h6= 'Actors:' + " " + movie.actorNames
+				h6= 'Subtitles:' + " " + movie.subtitles
+				h6= 'Genre:' + " " + movie.genre
+				h6= 'Length:' + " " + movie.lengthInMin
+				p= 'Description:' + " " +movie.description
 
 
-
-		.container
-			//- each user in users
-			.row
+	hr
+	.container
+		.row
+			each user in users
 				.col-sm-6.col-md-4
 					.thumbnail
-						img(height="150" src='https://images-na.ssl-images-amazon.com/images/M/MV5BODYxNzE4OTk5Nl5BMl5BanBnXkFtZTcwODYyMDYzMw@@._V1_UY317_CR12,0,214,317_AL_.jpg', alt='...')
+						img(height="150" src='user.profileImageURL', alt='No profile picture')
 						.caption
-							h3 Jessica Alba
-							a.btn.btn-primary(href='#', role='button') Match
-
-			//- .row
-			//- 	.col-sm-6.col-md-4
-			//- 		.thumbnail
-			//- 			img(height="150" src='user.profileImageURL', alt='user.name')
-			//- 			.caption
-			//- 				h3=user.name user.surname
-			//- 				a.btn.btn-primary(href='#', role='button') Match
+							h3=user.name + " " + user.surname
+							a.btn.btn-primary(href='#', role='button') Match!

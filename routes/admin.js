@@ -57,7 +57,7 @@ router.post('/movies/new', (request, response) => {
   if (request.body.title) {
     console.log(request.body);
     db.Movie.create(request.body).then(() => {
-      response.redirect('/');
+      response.redirect('/admin/movies/new');
     });
   } else {
     reponse.redirect('/admin/movies/index');
