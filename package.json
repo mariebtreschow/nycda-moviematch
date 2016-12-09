@@ -7,9 +7,16 @@
     "type": "git"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "crypt": "^0.0.1",
+=======
+    "base64url": "^2.0.0",
+    "bcrypt": "^1.0.0",
+    "body-parser": "^1.15.2",
+    "db": "^1.0.6",
+>>>>>>> master
     "express": "^4.14.0",
     "express-routemap": "^1.0.2",
     "express-session": "^1.14.2",
@@ -21,6 +28,16 @@
     "db": "^1.0.6",
     "sequelize": "^3.27.0",
     "sessions": "^0.0.2-7"
+<<<<<<< HEAD
+=======
+  },
+  "name": "moviematch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/mariebtreschow/nycda-moviematch.git",
+    "type": "git"
+>>>>>>> master
   },
   "author": "Marie Treschow <treschow.marie@gmail.com>",
   "license": "MIT"

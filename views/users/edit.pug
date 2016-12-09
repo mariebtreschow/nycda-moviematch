@@ -15,20 +15,22 @@ block content
 				form(action="/user/profile/" + user.id method="POST")
 					input(type="hidden" name="_method" value="PUT")
 					div(class="form-group")
-						lable(for="profileImageURL") Picture Link:
-						input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL" value=userprofile.profileImageURL)
+
+						label(for="profileImageURL") Picture Link:
+						input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL" value=userProfile.profileImageURL)
 					div(class="form-group")
-						lable(for="user-name") Name:
-						input(name="name" type="text" class="form-control" id="user-name" value=userprofile.name)
+						label(for="user-name") Name:
+						input(name="name" type="text" class="form-control" id="user-name" value=userProfile.name)
 					div(class="form-group")
-						lable(for="user-surname") Surname:
-						input(name="surname" type="text" class="form-control" id="user-surname" value=userprofile.surname)
+						label(for="user-surname") Surname:
+						input(name="surname" type="text" class="form-control" id="user-surname" value=userProfile.surname)
 					div(class="form-group")
-						lable(for="user-email") Email:
-						input(name="email" type="text" class="form-control" id="user-email" value=userprofile.email)
+						label(for="user-email") Email:
+						input(name="email" type="text" class="form-control" id="user-email" value=userProfile.email)
 					div(class="form-group")
-						lable(for="user-age") Age:
-						input(name="age" type="integer" class="form-control" id="user-age" value=userprofile.age)
+						label(for="user-age") Age:
+						input(name="age" type="integer" class="form-control" id="user-age" value=userProfile.age)
+
 
 					div(class="form-group text-xs-center")
 						button(type="submit" class="btn btn-block btn-ls btn-success") Update your Profile

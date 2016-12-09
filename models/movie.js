@@ -5,37 +5,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    coverImageURL: {
-      type: DataTypes.STRING
-    },
-    trailer: {
-      type: DataTypes.STRING
-    },
+    coverImageURL: DataTypes.STRING,
+    trailer: DataTypes.STRING,
     slug: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    directorName: {
-      type: DataTypes.STRING
-    },
-    actorNames: {
-      type: DataTypes.STRING
-    },
-    language: {
-      type: DataTypes.STRING
-    },
-    subtitles: {
-      type: DataTypes.STRING
-    },
-    genre: {
-      type: DataTypes.STRING
-    },
-    lengthInMin: {
-      type: DataTypes.INTEGER
-    },
-    description: {
-      type: DataTypes.TEXT
-    }
+    directorName: DataTypes.STRING,
+    actorNames: DataTypes.STRING,
+    language: DataTypes.STRING,
+    subtitles: DataTypes.STRING,
+    genre: DataTypes.STRING,
+    lengthInMin: DataTypes.INTEGER,
+    description: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
