@@ -19,6 +19,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
    },
+   admin: {
+      type: DataTypes.BOOLEAN,
+   },
     password: {
       type: DataTypes.VIRTUAL,
       set: function(val) {
