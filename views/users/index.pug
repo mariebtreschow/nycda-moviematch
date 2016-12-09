@@ -2,8 +2,20 @@ extends ../application.pug
 
 block content
 
-	.container
-		.row
-			br
-			h1 Find your Movie match:
-			hr
+	.page-header
+		.jumbotron
+			.container.text-xs-center
+
+				h1 Welcome to MovieMatch!
+				h5 for everyone who loves to go to the movies, but hates to go alone.
+
+		.container
+			//-each movie in movies
+			.row
+				.col-xs-3
+					.card.card-block
+						.thumbnail
+							img(src="http://photos.laineygossip.com/articles/fantastic-beasts-sequel-03aug16.jpg" width="200" height="300")
+							.caption
+								h3 Fantastic Beasts and Where to Find Them
+									a.btn.btn-primary(href='#' role="button") check it out!
