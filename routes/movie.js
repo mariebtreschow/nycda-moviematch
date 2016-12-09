@@ -4,7 +4,10 @@ const express = require('express'),
 
 router.get('/movies', (req, res) => {
    db.Movie.findAll().then((movies) => {
-      res.render('users/index', { user: req.session.user, movies: movies });
+      res.render('users/index', {
+         user: req.session.user,
+         movies: movies
+      });
    }).catch((error) => {
       console.log('THIS IS THE ERROR:');
       console.log(error);
@@ -13,14 +16,18 @@ router.get('/movies', (req, res) => {
 
 
 router.get('/movies/:slug', (req, res) => {
-   db.Movie.findOne(req.body, {
+   db.Movie.findOne({
       where: {
          slug: req.params.slug
       }
    }).then((movie) => {
-      res.render('movie', { movie: movie, user: users });
-   }).catch((error) => {
-      throw error;
+      db.User.findAll().then((user) => {
+         res.render('users/movie', {
+            user: req.session.user,
+            movie: movie,
+            users: user
+         });
+      });
    });
 });
 
