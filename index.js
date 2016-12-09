@@ -11,12 +11,6 @@ const express = require('express'),
 var app = express(),
     db = require('./models');
 
-
-
-// var registrationRouter = require('./routes/registration');
-
-
-
 var app = express();
     db = require('./models');
 
@@ -24,7 +18,6 @@ const userRouter = require('./routes/user'),
       authenticationRouter = require('./routes/authentication'),
       movieRouter = require('./routes/movie'),
       adminRouter = require('./routes/admin');
-
 
 
 app.use(express.static('public'));
@@ -59,12 +52,6 @@ app.use('/', authenticationRouter);
 app.use('/', movieRouter);
 
 
-
-// app.get('/', (request,response) => {
-//   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
-//     response.render('admin/movies/index', { movies: movies });
-//   });
-
 app.get('/', (req, res) => {
    res.render('homepage');
 });
@@ -74,11 +61,6 @@ app.get('/users/:id', (req, res) => {
 });
 
 
-
-//
-// app.get('/logout', (req, res) => {
-//    req.session.user = undefined;
-//    res.redirect('/');
 
 app.get('/about', (req,res) => {
   res.render('about');

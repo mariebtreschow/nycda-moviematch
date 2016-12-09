@@ -3,29 +3,7 @@ const bcrypt = require('bcrypt'),
       db = require('../models'),
       router = express.Router();
 
-//router.get('/message', (req, res) => {
-   //res.render('users/message');
-//});
 
-//router.post('/message', (req, res) => {
-   //db.User.findOne({
-      //where: {
-         //id: req.params.id
-      //}
-   //}).then((user) => {
-      //transporter.sendMail({
-         //to: user.email,
-         //subject: 'MovieMatch Request',
-         //text: req.body.email_content + '\n\nSender Email: ' +
-         //req.body.email  + '\nSender User: ' + req.body.name + req.body.surname
-         //}, (error, info) => {
-            //if (error) {
-            //console.log('Error occured:');
-            //console.log(error);
-         //}
-   //   });
-//   });
-//});
 
 
 router.get('/profile', (req, res) => {

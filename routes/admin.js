@@ -84,4 +84,13 @@ router.delete('/:id', (request, response) => {
   });
 });
 
+
+
+router.get('/logout', (request, response) => {
+   request.session.user = undefined;
+   response.redirect('/');
+});
+
+
+
 module.exports = router;
