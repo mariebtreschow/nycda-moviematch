@@ -2,18 +2,20 @@ extends ../../application.pug
 
 block content
   h1 Users List
+  each user in users
   .card.card-block
     .row
       .col-md-4.hidden-md-down
-        img(src=users.imageURL alt=users.title + "Cover Image" class="img-fluid")
+        img(src=user.profileImageURL width="350" height="350" class="float-xs-left")
       .col-xs-12.col-md-8
-        h2= users.title
-        h5= users.director
-        p= movie.description
+        h1="Admin: " + user.admin
+        h5="Name: " + user.name + " " + user.surname
+        h5="Email: " + user.email
+        h5="Age: " + user.age
         .row
           .col-xs-3.offset-xs-6
-            a(href="/movies/" + "edit/" + movie.id class="btn btn-warning") EDIT MOVIE
+            a(href="/admin/users/" + user.id + "/edit" class="btn btn-warning") EDIT USER
           .col-xs-3
-            form(action="/movies/" + movie.id method="POST")
+            form(action="/users/" + user.id method="POST")
               input(type="hidden" name="_method" value="DELETE")
               button(type="submit", class="btn btn-danger btn-block") DELETE
