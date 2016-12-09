@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
    admin: {
       type: DataTypes.BOOLEAN,
    },
-    password: {
+   password: {
       type: DataTypes.VIRTUAL,
       set: function(val) {
          this.setDataValue('passwordDigest', bcrypt.hashSync(val, 10));
