@@ -27,6 +27,9 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      admin: {
+         type: Sequelize.BOOLEAN,
+      },
       profileImageURL: {
         type: Sequelize.STRING
       },

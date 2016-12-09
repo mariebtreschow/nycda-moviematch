@@ -19,7 +19,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
    },
-    password: {
+   admin: {
+      type: DataTypes.BOOLEAN,
+   },
+   password: {
       type: DataTypes.VIRTUAL,
       set: function(val) {
          this.setDataValue('passwordDigest', bcrypt.hashSync(val, 10));

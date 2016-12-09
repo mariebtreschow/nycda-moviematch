@@ -3,7 +3,7 @@ const express = require('express'),
       router = express.Router();
 
 router.get('/movies', (req, res) => {
-  res.render('users/index', { user: req.session.user });
+   res.render('users/index', { user: req.session.user });
 });
 
 

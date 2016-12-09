@@ -2,18 +2,45 @@ extends ../application.pug
 
 block content
 
-	.container
-		br
-		h1 Find your Movie match:
-		hr
-//-				each movie in movies
-	.row
-		.col-xs-8
-			.card.card-block
-				a(href='/' + movie.slug)
-					h4=movie.imageURL
-				h6=movie.title
-				h6=movie.genre
-					.col-xs-2.offset-xs-8
-						a(href='users/movie/:slug')
-							button(type="submit" class="btn btn-success btn-block") Like this one!
+	.page-header
+		.jumbotron
+			.container.text-xs-center
+
+				h1 Welcome to MovieMatch!
+				h5 for everyone who loves to go to the movies, but hates to go alone.
+
+		.container
+			//-each movie in movies
+			.row
+				.col-xs-3
+					.card.card-block
+						.thumbnail
+							img(src="http://photos.laineygossip.com/articles/fantastic-beasts-sequel-03aug16.jpg" width="200" height="300")
+							.caption
+								h5 Fantastic Beasts and Where to Find Them
+									a.btn.btn-primary(href='#' role="button") Check it out
+				.col-xs-3
+					.card.card-block
+						.thumbnail
+							img(src="http://photos.laineygossip.com/articles/fantastic-beasts-sequel-03aug16.jpg" width="200" height="300")
+							.caption
+								h5 Fantastic Beasts and Where to Find Them
+									a.btn.btn-primary(href='#' role="button") Check it out
+
+
+				.col-xs-3
+					.card.card-block
+						.thumbnail
+							img(src="http://photos.laineygossip.com/articles/fantastic-beasts-sequel-03aug16.jpg" width="200" height="300")
+							.caption
+								h5 Fantastic Beasts and Where to Find Them
+									a.btn.btn-primary(href='#' role="button") Check it out
+
+
+				.col-xs-3
+					.card.card-block
+						.thumbnail
+							img(src="http://photos.laineygossip.com/articles/fantastic-beasts-sequel-03aug16.jpg" width="200" height="300")
+							.caption
+								h5 Fantastic Beasts and Where to Find Them
+									a.btn.btn-primary(href='#' role="button") Check it out

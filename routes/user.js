@@ -40,7 +40,7 @@ router.get('/edit-password', (req, res) => {
    res.render('users/edit-password', { user: req.session.user });
 });
 
-router.put('/edit-password/:id', (req, res) => {
+router.put('/edit-password', (req, res) => {
    db.User.update(req.body, {
       where: {
          id: req.session.user.id
