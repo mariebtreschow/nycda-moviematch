@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "crypt": "^0.0.1",
     "base64url": "^2.0.0",
     "bcrypt": "^1.0.0",
     "body-parser": "^1.15.2",
@@ -11,6 +12,7 @@
     "morgan": "^1.7.0",
     "pg": "^6.1.0",
     "pug": "^2.0.0-beta6",
+    "db": "^1.0.6",
     "sequelize": "^3.27.0",
     "sessions": "^0.0.2-7"
   },
@@ -20,7 +22,7 @@
   "repository": {
     "url": "https://github.com/mariebtreschow/nycda-moviematch.git",
     "type": "git"
-  },
+  },  
   "author": "Marie Treschow <treschow.marie@gmail.com>",
   "license": "MIT"
 }

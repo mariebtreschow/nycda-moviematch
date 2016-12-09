@@ -8,12 +8,17 @@ const express = require('express'),
       bcrypt = require('bcrypt'),
       morgan = require('morgan');
 
+var app = express(),
+    db = require('./models');
+
 var app = express();
     db = require('./models');
 
 const userRouter = require('./routes/user'),
       authenticationRouter = require('./routes/authentication'),
-      movieRouter = require('./routes/movie');
+      movieRouter = require('./routes/movie'),
+      adminRouter = require('./routes/admin');
+
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -35,6 +40,11 @@ app.use(session({
    saveUninitialized: true
 }));
 
+
+app.set('view engine', 'pug');
+
+app.use('/admin', adminRouter);
+
 app.use('/', userRouter);
 
 app.use('/', authenticationRouter);
@@ -49,6 +59,8 @@ app.get('/', (req, res) => {
 app.get('/users/:id', (req, res) => {
    // this will be other users profile
 });
+
+
 
 app.get('/about', (req,res) => {
   res.render('about');

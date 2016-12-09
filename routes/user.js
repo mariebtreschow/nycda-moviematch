@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt'),
 
 router.get('/profile', (req, res) => {
    db.User.findOne({
-      where: {
-         id: req.session.user.id
-      }
+     where: {
+       id:req.session.user.id
+     }
    }).then((user) => {
       res.render('users/profile', { user: req.session.user, userProfile: user });
    });

@@ -4,32 +4,27 @@ block content
   .container
     .row
       .col-xs-8.offset-xs-2
-        h1 Edit Movie
+        h1 Edit User
         hr
-        form(action="/admin/movies/new" method="POST")
+        form(action="/admin/users/" + user.id method="POST")
           div(class="form-group")
-            label(for="movie-title")
-            input(name="title" type="text" class="form-control" id="movie-title")
+            lable(for="admin-user") Admin:
+            input(name="admin" type="checkbox" class="form-control" id="admin-user" value=user.admin)
           div(class="form-group")
-            label(for="movie-slug") Slug
-            input(name="slug" type="text" class="form-control" id="movie-slug")
+            lable(for="profileImageURL") Picture Link:
+            input(name="profileImageURL" type="text" class="form-control" id="user-profileImageURL" value=user.profileImageURL)
           div(class="form-group")
-            label(for="movie-image") Image
-            input(name="image" type="text" class="form-control" id="movie-image")
+            lable(for="user-name") Name:
+            input(name="name" type="text" class="form-control" id="user-name" value=user.name)
           div(class="form-group")
-            label(for="movie-trailer") Trailer
-            input(name="trailer" type="text" class="form-control" id="movie-trailer")
+            lable(for="user-surname") Surname:
+            input(name="surname" type="text" class="form-control" id="user-surname" value=user.surname)
           div(class="form-group")
-            label(for="movie-director") Director
-            input(name="director" type="text" class="form-control" id="movie-director")
+            lable(for="user-email") Email:
+            input(name="email" type="text" class="form-control" id="user-email" value=user.email)
           div(class="form-group")
-            label(for="movie-genre") Genre
-            input(name="genre" type="text" class="form-control" id="movie-genre")
-          div(class="form-group")
-            label(for="movie-length") Length
-            input(name="length" type="text" class="form-control" id="movie-length")
-          div(class="form-group")
-            label(for="movie-description") Description
-            textarea(name="description" class="form-control" rows=5 id="movie-description")
+            lable(for="user-age") Age:
+            input(name="age" type="integer" class="form-control" id="user-age" value=user.age)
+
           div(class="form-group text-xs-right")
             button(type="submit" class="btn btn-lg btn-success") Edit
