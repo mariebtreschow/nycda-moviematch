@@ -50,10 +50,10 @@ router.get('/profile/edit', (req, res) => {
 router.put('/profile', (req, res) => {
    db.User.update(req.body, {
       where: {
-         id: req.params.id
+         id: req.session.user.id
       }
    }).then(() => {
-      res.redirect('profile/' + req.params.id);
+      res.redirect('/profile');
    }).catch((error) => {
    });
 });
@@ -63,13 +63,13 @@ router.get('/edit-password', (req, res) => {
    res.render('users/edit-password', { user: req.session.user });
 });
 
-router.put('/edit-password/:id', (req, res) => {
+router.put('/edit-password', (req, res) => {
    db.User.update(req.body, {
       where: {
-         id: req.params.id
+         id: req.session.user.id
       }
    }).then(() => {
-      res.redirect('/user/profile/' + req.params.id );
+      res.redirect('/profile');
    });
 });
 

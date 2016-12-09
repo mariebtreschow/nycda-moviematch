@@ -27,12 +27,12 @@ router.post('/login', (req, res) => {
       }
    }).then((userInDB) => {
       bcrypt.compare(req.body.password, userInDB.passwordDigest, (error, result) => {
-         if (error) {
+         if (error || !result) {
             return res.redirect('login');
          }
 
          req.session.user = userInDB;
-         res.redirect('/user/movies');
+         res.redirect('/movies');
        });
     }).catch((error) => {
      res.redirect('login');
