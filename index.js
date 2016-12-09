@@ -66,7 +66,7 @@ app.use('/', movieRouter);
 //   });
 
 app.get('/', (req, res) => {
-   res.render('users/movie');
+   res.render('homepage');
 });
 
 app.get('/users/:id', (req, res) => {
