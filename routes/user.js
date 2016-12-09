@@ -4,29 +4,15 @@ const bcrypt = require('bcrypt'),
       router = express.Router();
 
 
-
-
 router.get('/profile', (req, res) => {
    db.User.findOne({
      where: {
        id:req.session.user.id
      }
    }).then((user) => {
-      res.render('users/profile', { user: req.session.user, userprofile: user });
+      res.render('users/profile', { user: req.session.user, userProfile: user });
    });
 });
-
-router.get('/profile/edit', (req, res) => {
-   db.User.findOne({
-     where: {
-       id: req.params.id
-     }
-   }).then((user) => {
-      res.render('users/edit', { user: req.session.user, userprofile: user });
-   });
-});
-
-
 
 router.get('/profile/edit', (req, res) => {
    db.User.findOne(req.body, {
@@ -41,26 +27,26 @@ router.get('/profile/edit', (req, res) => {
 router.put('/profile', (req, res) => {
    db.User.update(req.body, {
       where: {
-         id: req.params.id
+         id: req.session.user.id
       }
    }).then(() => {
-      res.redirect('profile/' + req.params.id);
+      res.redirect('/profile');
    }).catch((error) => {
    });
 });
 
 
 router.get('/edit-password', (req, res) => {
-   res.render('users/edit-password', { user: req.session.user, userprofile: user });
+   res.render('users/edit-password', { user: req.session.user });
 });
 
 router.put('/edit-password/:id', (req, res) => {
    db.User.update(req.body, {
       where: {
-         id: req.params.id
+         id: req.session.user.id
       }
    }).then(() => {
-      res.redirect('/user/profile/' + req.params.id );
+      res.redirect('/profile');
    });
 });
 
