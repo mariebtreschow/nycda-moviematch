@@ -11,13 +11,16 @@ block content
 				img(src=movie.coverImageURL height="350" float-xs-left)
 			hr
 			.col-xs-6
-				h1= 'Title:' + " " + movie.title
+				h1=movie.title
 				h6= 'Director:' + " " + movie.directorName
 				h6= 'Actors:' + " " + movie.actorNames
 				h6= 'Subtitles:' + " " + movie.subtitles
 				h6= 'Genre:' + " " + movie.genre
 				h6= 'Length:' + " " + movie.lengthInMin
 				p= 'Description:' + " " +movie.description
+
+				form(action="/movies/" + movie.id + "/likes" method="POST")
+					button(type="submit" class="btn btn-lg btn-primary") Like The Movie
 
 
 	hr
@@ -26,7 +29,7 @@ block content
 			each user in users
 				.col-sm-6.col-md-4
 					.thumbnail
-						img(height="150" src='user.profileImageURL', alt='No profile picture')
+						img(height="150" src=user.profileImageURL, alt='No profile picture')
 						.caption
 							h3=user.name + " " + user.surname
 							a.btn.btn-primary(href='#', role='button') Match!
