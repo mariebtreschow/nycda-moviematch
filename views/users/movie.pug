@@ -27,6 +27,7 @@ block content
 	hr
 	.container
 		.row
+
 			each user in users
 				.col-sm-6.col-md-4
 					.thumbnail
@@ -36,4 +37,4 @@ block content
 						form(action="/match/" + user.id method="POST")
 							input(type="hidden" name="UserId" value=user.id)
 							div(class="form-group")
-								a.btn.btn-primary(href='#', role='button') Match!
+								button(class="btn btn-primary" type="submit") Match!
