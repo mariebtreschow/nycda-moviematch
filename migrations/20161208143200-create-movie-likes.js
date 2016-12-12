@@ -11,20 +11,11 @@ module.exports = {
       UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-         model: 'User',
-         key: 'id'
-      },
-      onDelete: 'cascade'
       },
       MovieId: {
         type: Sequelize.INTEGER,
+        unique: true,
         allowNull: false,
-        references: {
-         model: 'Movie',
-         key: 'id'
-      },
-      onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
