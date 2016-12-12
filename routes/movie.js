@@ -14,6 +14,23 @@ router.get('/movies', (req, res) => {
    });
 });
 
+router.post('/movies/:id/likes', (req, res) => {
+   db.Movie.findOne({
+      where: {
+         id: req.params.id
+      }
+   }).then((movie) => {
+      var like = req.body;
+      like.MovieId = movie.id;
+      like.UserId = req.session.user.id;
+
+   db.UserMovieLikes.create(req.body).then(() => {
+      res.redirect('/movies');
+
+      });
+   });
+});
+
 
 router.get('/movies/:slug', (req, res) => {
    db.Movie.findOne({
