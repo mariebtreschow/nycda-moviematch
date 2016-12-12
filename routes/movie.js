@@ -1,4 +1,5 @@
 const express = require('express'),
+      _ = require('lodash'),
       db = require('../models'),
       router = express.Router();
 
@@ -35,29 +36,51 @@ router.post('/movies/:id/likes', (req, res) => {
 
    db.UserMovieLikes.create(req.body).then(() => {
       res.redirect('/movies');
+
       });
    });
 });
-
 
 
 
 router.get('/movies/:slug', (req, res) => {
+   var movie;
    db.Movie.findOne({
       where: {
          slug: req.params.slug
       }
-   }).then((movie) => {
-      db.User.findAll().then((user) => {
-         res.render('users/movie', {
-            user: req.session.user,
-            movie: movie,
-            users: user
-         });
+   }).then((foundMovie) => {
+      movie = foundMovie;
+
+      return db.UserMovieLikes.findAll({
+         where: {
+            MovieId: foundMovie.id
+         }
       });
+   }).then((movieLikes) => {
+      var userIds = movieLikes.map((movieLike) => {
+         return movieLike.UserId;
+      });
+
+      console.log(userIds);
+
+      return db.User.findAll({
+         where: {
+            id: {
+               $in: userIds
+            }
+         }
+      });
+   }).then((users) => {
+      res.render('users/movie', {
+         user: req.session.user,
+         movie: movie,
+         users: users
+      });
+   }).catch((error) => {
+      console.log(error);
+      // handle the error here
    });
 });
-
-
 
 module.exports = router;
