@@ -10,8 +10,7 @@ router.get('/movies', (req, res) => {
          movies: movies
       });
    }).catch((error) => {
-      console.log('THIS IS THE ERROR:');
-      console.log(error);
+      throw error;
    });
 });
 
@@ -32,6 +31,26 @@ router.post('/movies/:id/likes', (req, res) => {
    });
 });
 
+router.post('/match/:id', (req, res) => {
+   db.User.findOne({
+      where: {
+         id: req.params.id
+      }
+   }).then((matchUser) => {
+      var user = req.session.user;
+      var match = req.body;
+      match.targetId = matchUser.id;
+      match.requestId = req.session.user.id;
+
+      console.log(req.body);
+      console.log(user);
+
+      db.UserMatchRequest.create(req.body).then(() => {
+         res.redirect('/movies');
+
+      });
+   });
+});
 
 router.get('/movies/:slug', (req, res) => {
    var movie;
