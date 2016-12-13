@@ -33,7 +33,9 @@ router.get('/messages', (req, res) => {
   });
 });
 
-
+router.get('/chat', (req, res) => {
+  res.render('users/chat', { user: req.session.user });
+});
 
 
 module.exports = router;
