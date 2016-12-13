@@ -1,0 +1,16 @@
+extends ../application.pug
+
+block content
+
+	.container
+		.row
+			.col-xs-12
+				hr
+				h2 Message your MovieMatch:
+				hr
+		//-each message in messages
+			.card.card-block
+				.row
+					.col-xs-4
+						h2= message.title
+						p= message.body

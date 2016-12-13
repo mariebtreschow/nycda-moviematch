@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var UserMovieRequest = sequelize.define('UserMovieRequest', {
+  var UserMatchRequest = sequelize.define('UserMatchRequest', {
     requestId: DataTypes.INTEGER,
     targetId: DataTypes.INTEGER
   }, {
@@ -10,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return UserMovieRequest;
+  return UserMatchRequest;
 };

@@ -32,4 +32,7 @@ block content
 						img(height="150" src=user.profileImageURL, alt='No profile picture')
 						.caption
 							h3=user.name + " " + user.surname
-							a.btn.btn-primary(href='#', role='button') Match!
+						form(action='/movies/' + user.id method="POST")
+							input(type="hidden" name="targetId" value=user.id)
+							div(class="form-group")
+								button(class="btn btn-primary" type="submit" ) Match!
