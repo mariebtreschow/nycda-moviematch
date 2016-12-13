@@ -4,8 +4,16 @@ const express = require('express'),
 
 
 router.get('/messages', (req, res) => {
+   db.UserMatchRequest.findAll({
+      where: {
+         targetId: req.session.user.id
+      } // or this will be requestId
+   }).then
+});
+
    res.render('users/message', { user: req.session.user });
 });
+
 
 
 module.exports = router;
