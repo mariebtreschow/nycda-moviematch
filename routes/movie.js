@@ -42,9 +42,6 @@ router.post('/match/:id', (req, res) => {
       match.targetId = matchUser.id;
       match.requestId = req.session.user.id;
 
-      console.log(req.body);
-      console.log(user);
-
       db.UserMatchRequest.create(req.body).then(() => {
          res.redirect('/movies');
 
