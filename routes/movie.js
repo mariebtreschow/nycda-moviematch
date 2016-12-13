@@ -52,8 +52,6 @@ router.get('/movies/:slug', (req, res) => {
          return movieLike.UserId;
       });
 
-      console.log(userIds);
-
       return db.User.findAll({
          where: {
             id: {
@@ -69,7 +67,6 @@ router.get('/movies/:slug', (req, res) => {
       });
    }).catch((error) => {
       console.log(error);
-      // handle the error here
    });
 });
 

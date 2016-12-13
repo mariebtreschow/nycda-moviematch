@@ -14,7 +14,6 @@ module.exports = {
       },
       MovieId: {
         type: Sequelize.INTEGER,
-        unique: true,
         allowNull: false,
       },
       createdAt: {

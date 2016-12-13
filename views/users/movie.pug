@@ -22,18 +22,17 @@ block content
 				form(action="/movies/" + movie.id + "/likes" method="POST")
 					input(type="hidden" name="MovieId" value=movie.id)
 					div(class="form-group")
-						button(class="btn btn-primary" type="submit") LIKE THIS MOVIE
+						button(class="btn btn-primary" type="submit") Like This Movie!
 
 	hr
 	.container
 		.row
-
 			each user in users
 				.col-sm-6.col-md-4
 					.thumbnail
-						img(height="150" src=user.profileImageURL, alt='No profile picture')
+						img(height="150" width="150" src=user.profileImageURL, alt='No profile picture')
 						.caption
-							h3=user.name + " " + user.surname
+							h5=user.name + " " + user.surname
 						form(action="/match/" + user.id method="POST")
 							input(type="hidden" name="UserId" value=user.id)
 							div(class="form-group")
