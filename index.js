@@ -17,6 +17,7 @@ var app = express();
 const userRouter = require('./routes/user'),
       authenticationRouter = require('./routes/authentication'),
       movieRouter = require('./routes/movie'),
+      messageRouter = require('./routes/message'),
       adminRouter = require('./routes/admin');
 
 
@@ -51,7 +52,7 @@ app.use('/', authenticationRouter);
 
 app.use('/', movieRouter);
 
-// app.use('/', messageRouter);
+app.use('/', messageRouter);
 
 
 app.get('/', (req, res) => {

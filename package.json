@@ -1,4 +1,5 @@
 {
+  "name": "moviematch",
   "dependencies": {
     "base64url": "^2.0.0",
     "bcrypt": "^1.0.0",
@@ -16,7 +17,6 @@
     "sequelize": "^3.27.0",
     "sessions": "^0.0.2-7"
   },
-  "name": "moviematch",
   "version": "1.0.0",
   "main": "index.js",
   "repository": {

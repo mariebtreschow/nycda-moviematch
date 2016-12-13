@@ -2,7 +2,7 @@ Arguments:
   /usr/local/bin/node /usr/local/bin/yarn add lodash
 
 PATH: 
-  /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   0.16.1
@@ -15,6 +15,10 @@ Platform:
 
 npm manifest: 
   {
+<<<<<<< HEAD
+=======
+     "name": "moviematch",
+>>>>>>> master
     "dependencies": {
       "crypt": "^0.0.1",
       "base64url": "^2.0.0",
@@ -32,13 +36,20 @@ npm manifest:
       "sequelize": "^3.27.0",
       "sessions": "^0.0.2-7"
     },
+<<<<<<< HEAD
     "name": "moviematch",
+=======
+>>>>>>> master
     "version": "1.0.0",
     "main": "index.js",
     "repository": {
       "url": "https://github.com/mariebtreschow/nycda-moviematch.git",
       "type": "git"
+<<<<<<< HEAD
     },  
+=======
+    },
+>>>>>>> master
     "author": "Marie Treschow <treschow.marie@gmail.com>",
     "license": "MIT"
   }
@@ -241,8 +252,13 @@ Lockfile:
   
   <<<<<<< HEAD
   <<<<<<< HEAD
+<<<<<<< HEAD
   =======
   =======
+=======
+  =======
+  =======
+>>>>>>> master
   >>>>>>> master
   buildmail@3.10.0:
     version "3.10.0"
@@ -2015,10 +2031,17 @@ Lockfile:
 
 Trace: 
   SyntaxError: Unknown token 190:1
+<<<<<<< HEAD
       at Parser.unexpected (/usr/local/lib/node_modules/yarn/lib/lockfile/parse.js:218:11)
       at Parser.parse (/usr/local/lib/node_modules/yarn/lib/lockfile/parse.js:323:14)
       at exports.default (/usr/local/lib/node_modules/yarn/lib/lockfile/parse.js:13:17)
       at /usr/local/lib/node_modules/yarn/lib/lockfile/wrapper.js:129:60
+=======
+      at Parser.unexpected (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/parse.js:218:11)
+      at Parser.parse (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/parse.js:323:14)
+      at exports.default (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/parse.js:13:17)
+      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/lib/lockfile/wrapper.js:129:60
+>>>>>>> master
       at next (native)
-      at step (/usr/local/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
-      at /usr/local/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:13
+      at step (/usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:17:30)
+      at /usr/local/Cellar/yarn/0.16.1/libexec/lib/node_modules/yarn/node_modules/babel-runtime/helpers/asyncToGenerator.js:28:20
