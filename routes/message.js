@@ -31,17 +31,31 @@ router.get('/messages', (req, res) => {
         res.render('users/message', { user: req.session.user, matchedUsers: matchedUsers });
      });
   });
-
-   // db.UserMatchRequest.findAll({
-   //    where: {
-   //       targetId: req.session.user.id
-   //    } // or this will be requestId
-   // }).then((matchesWhereUserIsTarget) => {
-   //
-   // })
-
 });
 
 
+router.get('/messages/:id', (req, res) => {
+
+   res.render('users/chat', { user: req.session.user });
+
+});
+
+router.post('/messages/:id', (req, res) => {
+
+      var user = req.session.user;
+      var sendChat = req.body;
+
+   
+      sendChat.senderId = req.session.user.id;
+
+      db.Messages.create(req.body)
+      .then(() => {
+         res.redirect('/messages/:id');
+      }).catch((error) => {
+         console.log('This is your error:');
+         console.log(error);
+   });
+
+});
 
 module.exports = router;

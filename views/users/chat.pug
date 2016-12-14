@@ -1,0 +1,23 @@
+extends ../application.pug
+
+block content
+
+	.container
+		hr
+		h2 Your chat:
+		hr
+		.row
+
+			.col-xs-8
+				.card.card-block
+					h4 Here goes the messages
+
+
+				div(class="fixed-bottom")
+					form(action="/messages/" + user.id method="POST")
+						input(type="hidden" name="senderId" value=user.id)
+						div(class="form-group")
+
+							textarea(name="content" class="form-control" rows=5)
+						div(class="form-group text-xs-right")
+							button(type="submit" class="btn btn-success") Send Message
