@@ -33,8 +33,20 @@ router.get('/messages', (req, res) => {
   });
 });
 
-router.get('/chat', (req, res) => {
-  res.render('users/chat', { user: req.session.user });
+router.get('/messages/:id', (req, res) => {
+
+   res.render('users/chat', { user: req.session.user });
+
+});
+
+
+router.post('/messages/:id', (req, res) => {
+    db.Messages.create(req.body)
+    .then(() => {
+       res.redirect('/messages/:id');
+    }).catch(() => {
+       console.log(user.id);
+   });
 });
 
 

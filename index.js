@@ -11,8 +11,6 @@ const express = require('express'),
 var app = express(),
     db = require('./models');
 
-var app = express();
-    db = require('./models');
 
 const userRouter = require('./routes/user'),
       authenticationRouter = require('./routes/authentication'),

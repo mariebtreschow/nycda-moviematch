@@ -2,93 +2,150 @@ var express = require('express'),
     db = require('../models'),
     router = express.Router();
 
+var requireAdmin = (req, res, next) => {
+  // if (req.path === '/') {
+  //   return next();
+  // }
+
+  if (req.session.user.admin) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+};
+
+router.use(requireAdmin);
 
 
-
-// router.get('/', (request,response) => {
-//   response.render('admin/movies/index');
+// router.get('/', (req,res) => {
+//   res.render('admin/movies/index');
 // });
 //
-// router.get('/', (request,response) => {
-//   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
-//     response.render('admin/movies/index', { movies: movies });
-//   });
-// });
-
-router.get('/movies/new', (request,response) => {
-  response.render('admin/movies/new');
-});
-
-router.get('/users/adminpanel', (request,response) => {
-  response.render('admin/users/adminpanel');
-});
-
-
-router.get('/movies', (request,response) => {
+router.get('/', (req,res) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
-    response.render('admin/movies/show', { movies: movies });
+    res.render('admin/movies/index', { admin: req.session.user, movies: movies });
   });
 });
 
-router.get('/movies/:id/edit', (request,response) => {
-  db.Movie.findById(request.params.id).then((movies) => {
-    response.render('admin/movies/edit', { movies: movies });
+router.get('/movies/new', (req, res) => {
+  res.render('admin/movies/new', { admin: req.session.user });
+});
+
+router.get('/users/adminpanel', (req,res) => {
+  res.render('admin/users/adminpanel', { admin: req.session.user });
+});
+
+
+router.get('/movies', (req,res) => {
+  db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
+    res.render('admin/movies/show', { admin: req.session.user, movies: movies });
   });
 });
 
-router.get('/users/:id/edit', (request,response) => {
-  db.Users.findById(request.params.id).then((users) => {
-    response.render('admin/users/edit', { users: users });
+
+
+router.get('/movies/:id/edit', (req,res) => {
+  db.Movie.findById(req.params.id).then((movies) => {
+    res.render('admin/movies/edit', { admin: req.session.user, movies: movies });
   });
 });
 
-router.put('/users/:id', (request, response) => {
-  db.User.update(request.body, {
+router.get('/users/:id/edit', (req,res) => {
+  db.Users.findById(req.params.id).then((users) => {
+    res.render('admin/users/edit', { admin: req.session.user, users: users });
+  });
+});
+
+router.put('/users/:id', (req, res) => {
+  db.User.update(req.body, {
     where: {
-      id: request.params.id
+      id: req.params.id
     }
   }).then(() => {
-    response.redirect('/admin/users/adminpanel');
+    res.redirect('/admin/users/adminpanel');
   });
 });
 
 
-router.post('/movies/new', (request, response) => {
-  if (request.body.title) {
-    console.log(request.body);
-    db.Movie.create(request.body).then(() => {
-      response.redirect('/admin/movies/new');
+router.post('/movies/new', (req, res) => {
+  if (req.body.title) {
+    console.log(req.body);
+    db.Movie.create(req.body).then(() => {
+      res.redirect('/admin/movies/new');
     });
   } else {
     reponse.redirect('/admin/movies/index');
   }
 });
 
-router.put('/movies/:id', (request, response) => {
-  db.Movie.update(request.body, {
+router.put('/movies/:id', (req, res) => {
+  db.Movie.update(req.body, {
     where: {
-      id: request.params.id
+      id: req.params.id
     }
   }).then(() => {
-    response.redirect('/admin/movies');
+    res.redirect('/admin/movies');
   });
 });
 
-router.delete('/:id', (request, response) => {
+router.delete('/:id', (req, res) => {
   db.Movie.destroy({
     where: {
-      id: request.params.id
+      id: req.params.id
     }
   }).then(() => {
-    response.redirect('/admin/movies');
+    res.redirect('/admin/movies');
   });
+});
+
+//-------
+
+router.get('/movies/:slug', (req, res) => {
+   var movie;
+   db.Movie.findOne({
+      where: {
+         slug: req.params.slug
+      }
+   }).then((foundMovie) => {
+      movie = foundMovie;
+
+      return db.UserMovieLikes.findAll({
+         where: {
+            MovieId: foundMovie.id
+         }
+      });
+   }).then((movieLikes) => {
+      var userIds = movieLikes.map((movieLike) => {
+         return movieLike.UserId;
+      });
+      return db.User.findAll({
+         where: {
+            id: {
+               $in: userIds
+            }
+         }
+      });
+   }).then((users) => {
+      res.render('admin/movies/movie', {
+         admin: req.session.user,
+         movie: movie,
+         users: users
+      });
+   }).catch((error) => {
+      console.log(error);
+
+   });
 });
 
 
 
-router.get('/logout', (request, response) => {
-   request.session.user = undefined;
-   response.redirect('/');
+
+//-------
+
+
+router.get('/logout', (req, res) => {
+   req.session.user = undefined;
+   res.redirect('/');
 });
 
 

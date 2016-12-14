@@ -12,8 +12,10 @@ block content
 		each match in matchedUsers
 			.card.card-block
 				.row
+					.col-xs-2
+						img(src=match.profileImageURL class="rounded float-xs-left" width="150" height="150")
 					.col-xs-4
-						h2= match.name
+						h2= match.name + " " + match.surname
 						p= match.email
-							a(href="/chat")
-								button(class="btn btn-primary float-xs-right" type="submit") Send a message
+						a(href="/messages/" + match.id)
+							button(class="btn btn-primary float-xs-right" type="submit") Send a message
