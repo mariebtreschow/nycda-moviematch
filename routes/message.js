@@ -42,11 +42,6 @@ router.get('/messages/:id', (req, res) => {
 
 router.post('/messages/:id', (req, res) => {
 
-      var user = req.session.user;
-      var sendChat = req.body;
-
-   
-      sendChat.senderId = req.session.user.id;
 
       db.Messages.create(req.body)
       .then(() => {
