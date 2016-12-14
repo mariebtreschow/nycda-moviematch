@@ -4,7 +4,7 @@ block content
 
 	.container
 		hr
-		h2 Your chat:
+		h2 Your messages:
 		hr
 		.row
 
@@ -13,11 +13,12 @@ block content
 					h4 Here goes the messages
 
 
-				div(class="fixed-bottom")
+				.fixed-bottom
 					form(action="/messages/" + user.id method="POST")
 						input(type="hidden" name="senderId" value=user.id)
-						div(class="form-group")
+						input(type="hidden" name="receiverId" value=match)
+						.form-group
 
 							textarea(name="content" class="form-control" rows=5)
-						div(class="form-group text-xs-right")
+						.form-group.text-xs-right
 							button(type="submit" class="btn btn-success") Send Message

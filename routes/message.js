@@ -33,24 +33,22 @@ router.get('/messages', (req, res) => {
   });
 });
 
-
 router.get('/messages/:id', (req, res) => {
 
-   res.render('users/chat', { user: req.session.user });
-
+   res.render('users/chat', { user: req.session.user, match: req.params.id });
 });
 
 router.post('/messages/:id', (req, res) => {
 
+   db.Messages.create(req.body).then(() => {
+      res.redirect('/messages/' + req.body.receiverId);
+      
+      console.log('req prams id:');
+      console.log(req.params.id);
+      console.log('req body recieverId:');
+      console.log(req.body.receiverId);
 
-      db.Messages.create(req.body)
-      .then(() => {
-         res.redirect('/messages/:id');
-      }).catch((error) => {
-         console.log('This is your error:');
-         console.log(error);
    });
-
 });
 
 module.exports = router;
