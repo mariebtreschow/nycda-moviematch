@@ -34,6 +34,8 @@ router.get('/messages', (req, res) => {
 });
 
 router.get('/messages/:id', (req, res) => {
+   var foundMessages, foundUser;
+
    db.Messages.findAll({
       where: {
          receiverId: {
@@ -44,47 +46,40 @@ router.get('/messages/:id', (req, res) => {
          }
       }
    }).then((messages) => {
+      foundMessages = messages;
 
-   db.User.findOne({
-      where: {
-         id: req.session.user.id
-      }
-   }).then((user) => {
-      var userName = user.name;
-
-      db.User.findOne({
+      return db.User.findOne({
          where: {
             id: req.params.id
          }
-      }).then((receiver) => {
-      var receiverName = receiver.name;
-
-      receiverId = req.session.user.id;
-      senderId = req.params.id;
-
-
-         console.log('receiverId is:');
-         console.log(receiverId);
-         console.log('senderId is:');
-         console.log(senderId);
-         console.log('userName:');
-         console.log(userName);
-         console.log('receiverName:');
-         console.log(receiverName);
-
-
-           res.render('users/chat', {
-             user: req.session.user,
-             match: req.params.id,
-             messages: messages,
-             receiverName: receiver.name,
-             userName: user.name
-
-            });
-         });
       });
-   });
+   }).then((user) => {
+      foundUser = user;
+
+      var messages = foundMessages.map((foundMessage) => {
+         if (foundMessage.senderId === foundUser.id) {
+            foundMessage.sender = foundUser;
+         } else {
+            foundMessage.sender = req.session.user;
+         }
+
+         return foundMessage;
+      });
+
+      res.render('users/chat', {
+         user: req.session.user,
+         match: foundUser,
+         messages: messages
+      });
+
+   }).catch((error) => console.log(error));
 });
+
+// function assignTheMessageOwner(message, user)
+
+
+
+
 
 router.post('/messages/:id', (req, res) => {
    db.Messages.create(req.body).then(() => {
