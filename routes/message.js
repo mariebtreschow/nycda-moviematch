@@ -34,20 +34,61 @@ router.get('/messages', (req, res) => {
 });
 
 router.get('/messages/:id', (req, res) => {
+   db.Messages.findAll({
+      where: {
+         receiverId: {
+            $or: [req.params.id, req.session.user.id]
+         },
+         senderId: {
+            $or: [req.params.id, req.session.user.id]
+         }
+      }
+   }).then((messages) => {
 
-   res.render('users/chat', { user: req.session.user, match: req.params.id });
+   db.User.findOne({
+      where: {
+         id: req.session.user.id
+      }
+   }).then((user) => {
+      var userName = user.name;
+
+      db.User.findOne({
+         where: {
+            id: req.params.id
+         }
+      }).then((receiver) => {
+      var receiverName = receiver.name;
+
+      receiverId = req.session.user.id;
+      senderId = req.params.id;
+
+
+         console.log('receiverId is:');
+         console.log(receiverId);
+         console.log('senderId is:');
+         console.log(senderId);
+         console.log('userName:');
+         console.log(userName);
+         console.log('receiverName:');
+         console.log(receiverName);
+
+
+           res.render('users/chat', {
+             user: req.session.user,
+             match: req.params.id,
+             messages: messages,
+             receiverName: receiver.name,
+             userName: user.name
+
+            });
+         });
+      });
+   });
 });
 
 router.post('/messages/:id', (req, res) => {
-
    db.Messages.create(req.body).then(() => {
       res.redirect('/messages/' + req.body.receiverId);
-      
-      console.log('req prams id:');
-      console.log(req.params.id);
-      console.log('req body recieverId:');
-      console.log(req.body.receiverId);
-
    });
 });
 
