@@ -7,14 +7,16 @@ block content
 		h2 Here is your MovieMatch Profile:
 		.card.card-block
 			.row
-				.col-xs-4
-					img(src=userProfile.profileImageURL width="350" height="350" float-xs-left)
-				.col-xs-4
+				.col-md-5
+					.thumbnail
+						img(src=userProfile.profileImageURL height="350" class="rounded float-xs-left")
+				.col-md-4
 					h5="Name: " + userProfile.name + " " + userProfile.surname
 					h5="Email: " + userProfile.email
 					h5="Age: " + userProfile.age
-				.col-xs-4
+
 					a(href='/profile/edit')
 						button(type="submit" class="btn btn-lg btn-warning") Edit User
+
 					a(href='/edit-password')
 						button(type="submit" class="btn btn-lg btn-danger") Edit Password

@@ -53,6 +53,7 @@ app.use('/', movieRouter);
 app.use('/', messageRouter);
 
 
+
 app.get('/', (req, res) => {
   db.Movie.findAll().then((movies) => {
     res.render('homepage', { movies: movies });

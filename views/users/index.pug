@@ -12,11 +12,12 @@ block content
 		.container
 			.row
 				each movie in movies
-					.col-xs-3
+					.col-md-3
 						.card.card-block
-							.caption
+							.caption.text-xs-center
 								h5= movie.title
-								.thumbnail
-									img(src=movie.coverImageURL width="200" height="300")
-
-									a.btn.btn-primary(href="/movies/" + movie.slug role="button") Check out!
+							.thumbnail
+								img(src=movie.coverImageURL width="200" height="300" class="mx-auto d-block")
+							hr
+							div(class="form-group")
+								a(href="/movies/" + movie.slug role="button" class="d-block btn btn-primary") Check out!

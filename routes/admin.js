@@ -32,7 +32,9 @@ router.get('/movies/new', (req, res) => {
 });
 
 router.get('/users/adminpanel', (req,res) => {
-  res.render('admin/users/adminpanel', { admin: req.session.user });
+  db.User.findAll({ order: 'id ASC' }).then((users) => {
+    res.render('admin/users/adminpanel', { admin: req.session.user, users: users });
+  });
 });
 
 
@@ -50,11 +52,11 @@ router.get('/movies/:id/edit', (req,res) => {
   });
 });
 
-router.get('/users/:id/edit', (req,res) => {
-  db.Users.findById(req.params.id).then((users) => {
-    res.render('admin/users/edit', { admin: req.session.user, users: users });
-  });
-});
+// router.get('/users/:id/edit', (req,res) => {
+//   db.User.findById(req.params.id).then((users) => {
+//     res.render('admin/users/edit', { admin: req.session.user, userProfile: users });
+//   });
+// });
 
 router.put('/users/:id', (req, res) => {
   db.User.update(req.body, {
@@ -67,6 +69,9 @@ router.put('/users/:id', (req, res) => {
 });
 
 
+
+
+
 router.post('/movies/new', (req, res) => {
   if (req.body.title) {
     console.log(req.body);
@@ -77,28 +82,6 @@ router.post('/movies/new', (req, res) => {
     reponse.redirect('/admin/movies/index');
   }
 });
-
-router.put('/movies/:id', (req, res) => {
-  db.Movie.update(req.body, {
-    where: {
-      id: req.params.id
-    }
-  }).then(() => {
-    res.redirect('/admin/movies');
-  });
-});
-
-router.delete('/:id', (req, res) => {
-  db.Movie.destroy({
-    where: {
-      id: req.params.id
-    }
-  }).then(() => {
-    res.redirect('/admin/movies');
-  });
-});
-
-//-------
 
 router.get('/movies/:slug', (req, res) => {
    var movie;
@@ -138,9 +121,25 @@ router.get('/movies/:slug', (req, res) => {
 });
 
 
+router.put('/movies/:id', (req, res) => {
+  db.Movie.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.redirect('/admin/movies');
+  });
+});
 
-
-//-------
+router.delete('/users/:id', (req, res) => {
+  db.User.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.redirect('/admin/movies');
+  });
+});
 
 
 router.get('/logout', (req, res) => {
