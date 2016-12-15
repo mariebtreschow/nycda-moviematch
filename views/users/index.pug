@@ -17,7 +17,8 @@ block content
 							.caption.text-xs-center
 								h5= movie.title
 							.thumbnail
-								img(src=movie.coverImageURL width="200" height="300" class="mx-auto d-block")
+								a(href="/movies/" + movie.slug)
+									img(src=movie.coverImageURL width="200" height="300" class="mx-auto d-block")
 							hr
 							div(class="form-group")
 								a(href="/movies/" + movie.slug role="button" class="d-block btn btn-primary") Check out!

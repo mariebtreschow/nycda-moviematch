@@ -34,5 +34,3 @@ block content
 							h5=user.name + " " + user.surname
 						form(action="/match/" + user.id method="POST")
 							input(type="hidden" name="targetId" value=user.id)
-						div(class="form-group")
-							button(class="btn btn-primary" type="submit") Match!

@@ -7,18 +7,19 @@ block content
     .container
       .card.card-block
         .row
-          a(href="/admin/movies/" + movie.slug)
-            .col-md-4.hidden-md-down
+          .col-md-4.hidden-md-down
+            a(href="/admin/movies/" + movie.slug)
               img(src=movie.coverImageURL alt=movie.title + "Cover Image" height="350")
-            .col-xs-12.col-md-8
+          .col-xs-12.col-md-8
+            a(href="/admin/movies/" + movie.slug)
               h2= movie.title
-              h6= movie.slug
-              h6= movie.directorName
-              h6= movie.actorNames
-              h6= movie.subtitles
-              h6= movie.genre
-              h6= movie.lengthInMin
-              p= movie.description
+            h6= movie.slug
+            h6= movie.directorName
+            h6= movie.actorNames
+            h6= movie.subtitles
+            h6= movie.genre
+            h6= movie.lengthInMin
+            p= movie.description
 
 
 
