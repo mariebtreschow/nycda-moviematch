@@ -17,9 +17,8 @@ block content
 			.fixed-bottom
 				form(action="/messages/" + user.id method="POST")
 					input(type="hidden" name="senderId" value=user.id)
-					input(type="hidden" name="receiverId" value=match)
+					input(type="hidden" name="receiverId" value=matchedUser)
 					.form-group
-
 						textarea(name="content" class="form-control" rows=5)
 					.form-group.text-xs-right
 						button(type="submit" class="btn btn-success") Send Message

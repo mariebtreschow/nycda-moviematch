@@ -66,24 +66,27 @@ router.get('/messages/:id', (req, res) => {
          return foundMessage;
       });
 
-      res.render('users/chat', {
-         user: req.session.user,
-         match: foundUser,
-         messages: messages
-      });
 
-   }).catch((error) => console.log(error));
+         console.log('THIS IS REQ BODY');
+         console.log(req.body);
+
+         res.render('users/chat', {
+            user: req.session.user,
+            matchedUser: req.params.id,
+            match: foundUser,
+            messages: messages
+
+
+      });
+   });
 });
 
-// function assignTheMessageOwner(message, user)
-
-
-
-
-
 router.post('/messages/:id', (req, res) => {
+
    db.Messages.create(req.body).then(() => {
       res.redirect('/messages/' + req.body.receiverId);
+
+
    });
 });
 
