@@ -9,7 +9,6 @@ describe('User Model Testing', () => {
          done();
       });
    });
-   // should create a user
 
 
    it('cannot creat a user without a password', (done) => {
@@ -25,20 +24,20 @@ describe('User Model Testing', () => {
       });
    });
 
-   //it('user can update info', (done) => {
-      //db.User.update({
-         //name: 'Marie'
-   //   }, { where: {sd
-      //   name: 'Anna'
-   //   },
-      //returning: true
-//   }).then((updateData) => {
-   //   console.log(updateData);
-      //var user = updateData[0];
-//
-   //   assert.equal(user.name, 'Anna');
-      //done();
-//      });
-   //});
+   it('user can update info', (done) => {
+      db.User.update({
+         name: 'Marie'
+      }, { where: {
+         name: 'Anna'
+      },
+      returning: true
+   }).then((updateData) => {
+      console.log(updateData);
+      var user = updateData[0];
+
+      assert.equal(user.name, 'Anna');
+      done();
+      });
+   });
 
 });
