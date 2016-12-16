@@ -98,7 +98,7 @@ router.get('/movies/:slug', (req, res) => {
          }
       });
    }).then((users) => {
-      res.render('admin/movies/movie', {
+      res.render('users/movie', {
          admin: req.session.user,
          movie: movie,
          users: users
