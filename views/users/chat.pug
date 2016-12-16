@@ -10,8 +10,10 @@ block content
 			each message in messages
 				.col-xs-8
 					.card.card-block
+						p= message.createdAt
 						h5= message.sender.name
 						h6= message.content
+
 
 		.col-xs-8
 			.fixed-bottom
