@@ -3,9 +3,7 @@ var express = require('express'),
     router = express.Router();
 
 var requireAdmin = (req, res, next) => {
-  // if (req.path === '/') {
-  //   return next();
-  // }
+
 
   if (req.session.user.admin) {
     next();
@@ -17,10 +15,6 @@ var requireAdmin = (req, res, next) => {
 router.use(requireAdmin);
 
 
-// router.get('/', (req,res) => {
-//   res.render('admin/movies/index');
-// });
-//
 router.get('/', (req,res) => {
   db.Movie.findAll({ order: 'id ASC' }).then((movies) => {
     res.render('admin/movies/index', { admin: req.session.user, movies: movies });
@@ -52,11 +46,6 @@ router.get('/movies/:id/edit', (req,res) => {
   });
 });
 
-// router.get('/users/:id/edit', (req,res) => {
-//   db.User.findById(req.params.id).then((users) => {
-//     res.render('admin/users/edit', { admin: req.session.user, userProfile: users });
-//   });
-// });
 
 router.put('/users/:id', (req, res) => {
   db.User.update(req.body, {
