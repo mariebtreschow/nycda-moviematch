@@ -32,6 +32,9 @@ router.post('/login', (req, res) => {
          }
 
          req.session.user = userInDB;
+         if (req.session.user.admin) {
+           return res.redirect('/admin');
+         }
          res.redirect('/movies');
        });
     }).catch((error) => {

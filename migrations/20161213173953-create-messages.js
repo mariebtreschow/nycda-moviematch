@@ -1,20 +1,24 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('UserMovieLikes', {
+    return queryInterface.createTable('Messages', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      UserId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      content: {
+        type: Sequelize.TEXT,
+        allowNull: false
       },
-      MovieId: {
+      senderId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
+      },
+      receiverId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +31,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('UserMovieLikes');
+    return queryInterface.dropTable('Messages');
   }
 };

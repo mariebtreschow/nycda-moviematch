@@ -1,4 +1,4 @@
-extends ../application.pug
+extends ../../application.pug
 
 block content
 
@@ -7,12 +7,10 @@ block content
 	.container-fluid
 		.row
 			.col-xs-1
-			.col-md-4
-				.thumbnail
-					img(src=movie.coverImageURL height="400" float-xs-left)
+			.col-md-3
+				img(src=movie.coverImageURL height="350" float-xs-left)
 			hr
-			.col-md-6
-
+			.col-xs-6
 				h1= movie.title
 				h6= 'Director:' + " " + movie.directorName
 				h6= 'Actors:' + " " + movie.actorNames
@@ -21,22 +19,18 @@ block content
 				h6= 'Length:' + " " + movie.lengthInMin
 				p= 'Description:' + " " + movie.description
 
-				form(action="/movies/" + movie.id + "/likes" method="POST")
-					input(type="hidden" name="MovieId" value=movie.id)
-					div(class="form-group")
-						button(class="btn btn-primary" type="submit") Like This Movie!
+				div(class="form-group")
+					a(href="/admin/movies/" + movie.id + "/edit" class="btn btn-warning") EDIT MOVIE
 
 
 	hr
 	.container
 		.row
 			each user in users
-				.col-xs-6.col-md-2
+				.col-sm-2.col-md-2
 					.thumbnail
-						img(height="150" src=user.profileImageURL alt='No profile picture' class="rounded mx-auto d-block")
-						.caption.text-xs-center
+						img(height="150" src=user.profileImageURL, alt='No profile picture' class="rounded")
+						.caption
 							h5=user.name + " " + user.surname
 						form(action="/match/" + user.id method="POST")
 							input(type="hidden" name="targetId" value=user.id)
-							div(class="form-group")
-								button(class="mx-auto d-block btn btn-primary" type="submit") Match!

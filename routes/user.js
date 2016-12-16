@@ -20,7 +20,7 @@ router.get('/profile/edit', (req, res) => {
          id: req.session.user.id
       }
    }).then((user) => {
-      res.render('users/edit', { user: req.session.user, userProfile: user });
+      res.render('users/edit', { user: req.session.user });
    });
 });
 
@@ -49,5 +49,6 @@ router.put('/edit-password', (req, res) => {
       res.redirect('/profile');
    });
 });
+
 
 module.exports = router;

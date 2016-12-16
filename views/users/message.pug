@@ -1,0 +1,23 @@
+extends ../application.pug
+
+block content
+
+	.container
+		.row
+			.col-xs-12
+				hr
+				h2 Message your MovieMatch:
+				hr
+
+		each match in matchedUsers
+				.card.card-block
+					.row
+						.col-md-3
+							.thumbnail
+								img(src=match.profileImageURL class="rounded float-xs-left" height="150")
+						.col-md-4
+							h2= match.name + " " + match.surname
+							p= match.email
+
+							a(href="/messages/" + match.id)
+								button(class="btn btn-primary" type="submit") Send a message
