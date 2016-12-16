@@ -2,19 +2,25 @@ extends ../application.pug
 
 block content
 
-    .container
-      hr
-      h2 Your chat:
-      hr
+	.container
+		hr
+		h2 Your messages:
+		hr
+		.row
+			each message in messages
+				.col-xs-8
+					.card.card-block
+						p= message.createdAt
+						h5= message.sender.name
+						h6= message.content
 
-    .container
 
-
-
-      div(class="position-bottom")
-        form(action="/messages/" + user.id method="POST")
-          input(type="hidden" name="senderId" value=user.id )
-          div(class="form-group")
-            textarea(name="content" class="form-control" rows=5)
-          div(class="form-group text-xs-right")
-            button(type="submit" class="btn btn-lg btn-success") Add comment
+		.col-xs-8
+			.fixed-bottom
+				form(action="/messages/" + user.id method="POST")
+					input(type="hidden" name="senderId" value=user.id)
+					input(type="hidden" name="receiverId" value=matchedUser)
+					.form-group
+						textarea(name="content" class="form-control" rows=5)
+					.form-group.text-xs-right
+						button(type="submit" class="btn btn-success") Send Message
