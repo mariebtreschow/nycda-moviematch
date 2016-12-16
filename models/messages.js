@@ -1,8 +1,9 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var UserMovieRequest = sequelize.define('UserMovieRequest', {
-    requestId: DataTypes.INTEGER,
-    targetId: DataTypes.INTEGER
+  var Messages = sequelize.define('Messages', {
+    content: DataTypes.TEXT,
+    senderId: DataTypes.INTEGER,
+    receiverId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
@@ -10,5 +11,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return UserMovieRequest;
+  return Messages;
 };
