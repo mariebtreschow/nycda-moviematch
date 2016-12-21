@@ -28,7 +28,10 @@ router.get('/messages', (req, res) => {
           }
         }
      }).then((matchedUsers) => {
-        res.render('users/message', { user: req.session.user, matchedUsers: matchedUsers });
+        res.render('users/message', {
+           user: req.session.user,
+           matchedUsers: matchedUsers
+        });
      });
   });
 });
