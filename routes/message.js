@@ -37,6 +37,7 @@ router.get('/messages', (req, res) => {
 });
 
 router.get('/messages/:id', (req, res) => {
+
    var foundMessages, foundUser;
 
    db.Messages.findAll({
@@ -66,6 +67,7 @@ router.get('/messages/:id', (req, res) => {
             foundMessage.sender = req.session.user;
          }
 
+
          return foundMessage;
       });
 
@@ -83,7 +85,9 @@ router.post('/messages/:id', (req, res) => {
    db.Messages.create(req.body).then(() => {
       res.redirect('/messages/' + req.body.receiverId);
 
+
    });
 });
+
 
 module.exports = router;

@@ -11,8 +11,6 @@ const express = require('express'),
 var app = express(),
     db = require('./models');
 
-var app = express();
-    db = require('./models');
 
 const userRouter = require('./routes/user'),
       authenticationRouter = require('./routes/authentication'),
@@ -55,8 +53,11 @@ app.use('/', movieRouter);
 app.use('/', messageRouter);
 
 
+
 app.get('/', (req, res) => {
-   res.render('homepage');
+  db.Movie.findAll().then((movies) => {
+    res.render('homepage', { movies: movies });
+  });
 });
 
 app.get('/users/:id', (req, res) => {

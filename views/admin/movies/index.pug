@@ -1,16 +1,19 @@
 extends ../../application.pug
 
 block content
-  h1 Movie List
-  hr
+  .container
+    h1 Movie List
+    hr
   each movie in movies
     .container
       .card.card-block
         .row
           .col-md-4.hidden-md-down
-            img(src=movie.coverImageURL alt=movie.title + "Cover Image" class="img-fluid")
+            a(href="/admin/movies/" + movie.slug)
+              img(src=movie.coverImageURL alt=movie.title + "Cover Image" height="350")
           .col-xs-12.col-md-8
-            h2= movie.title
+            a(href="/admin/movies/" + movie.slug)
+              h2= movie.title
             h6= movie.slug
             h6= movie.directorName
             h6= movie.actorNames
