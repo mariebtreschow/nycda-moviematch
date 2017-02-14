@@ -64,8 +64,6 @@ app.get('/users/:id', (req, res) => {
    // this will be other users profile
 });
 
-
-
 app.get('/about', (req,res) => {
   res.render('about');
 });
